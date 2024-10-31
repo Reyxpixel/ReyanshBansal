@@ -6,40 +6,59 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('background').appendChild(renderer.domElement);
 
 // Set Camera Position and Angle
-camera.position.set(0, -15, 10); // Camera position
-camera.rotation.x = THREE.MathUtils.degToRad(20); // Rotate the camera by 30 degrees
+camera.position.set(0, -15, 10);
+camera.rotation.x = THREE.MathUtils.degToRad(20);
 
 // Line Material
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0x2b0573, opacity: 0.8, transparent: true });
 const gridSize = 100;
-const amplitude = 1; // Increased amplitude for a more pronounced wave
+const amplitude = 1;
 
 // Group to hold all lines
 const lines = new THREE.Group();
 
-// Create Lines along the X-Axis
-for (let x = -gridSize / 2; x <= gridSize / 2; x += 1.7) { // Increase increment to 2 for larger squares
-    const points = [];
-    for (let y = -gridSize / 2; y <= gridSize / 2; y += 1.7) { // Increase increment to 2 for larger squares
-        points.push(new THREE.Vector3(x, y, 0)); // Create a line along y-axis
+// Create Lines along the X and Y Axes
+for (let x = -gridSize / 2; x <= gridSize / 2; x += 1.7) {
+    const pointsX = [], pointsY = [];
+    for (let y = -gridSize / 2; y <= gridSize / 2; y += 1.7) {
+        pointsX.push(new THREE.Vector3(x, y, 0));
+        pointsY.push(new THREE.Vector3(y, x, 0));
     }
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const line = new THREE.Line(geometry, lineMaterial);
-    lines.add(line);
-}
-
-// Create Lines along the Y-Axis (Rotated 90 Degrees)
-for (let y = -gridSize / 2; y <= gridSize / 2; y += 1.7) { // Increase increment to 2 for larger squares
-    const points = [];
-    for (let x = -gridSize / 2; x <= gridSize / 2; x += 1.7) { // Increase increment to 2 for larger squares
-        points.push(new THREE.Vector3(x, y, 0)); // Create a line along x-axis
-    }
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const line = new THREE.Line(geometry, lineMaterial);
-    lines.add(line);
+    const geometryX = new THREE.BufferGeometry().setFromPoints(pointsX);
+    const geometryY = new THREE.BufferGeometry().setFromPoints(pointsY);
+    lines.add(new THREE.Line(geometryX, lineMaterial));
+    lines.add(new THREE.Line(geometryY, lineMaterial));
 }
 
 scene.add(lines);
+
+// Variables for Parallax Effect
+let targetX = 0, targetY = -15; // Target positions for smooth movement
+const parallaxStrength = 0.5; // Overall parallax strength
+const easingFactor = 0.05; // Adjust this for slower or faster smoothing
+
+// Event Listener for Mouse Movement
+window.addEventListener('mousemove', (event) => {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    // Calculate distance from center as a fraction of window size
+    const distanceX = (event.clientX - centerX) / centerX;
+    const distanceY = (event.clientY - centerY) / centerY;
+
+    // Scaling factor for smooth edge effect
+    const scale = 1 - Math.sqrt(distanceX ** 2 + distanceY ** 2) * 0.6;
+
+    // Calculate target camera position
+    targetX = distanceX * scale * parallaxStrength;
+    targetY = -15 + distanceY * scale * parallaxStrength;
+});
+
+// Smoothly Update Camera Position
+function updateCameraPosition() {
+    camera.position.x += (targetX - camera.position.x) * easingFactor;
+    camera.position.y += (targetY - camera.position.y) * easingFactor;
+}
 
 // Animate the Wave
 function animateWave() {
@@ -60,6 +79,7 @@ function animateWave() {
 function animate() {
     requestAnimationFrame(animate);
     animateWave();
+    updateCameraPosition(); // Smoothly update the camera's position
     renderer.render(scene, camera);
 }
 
