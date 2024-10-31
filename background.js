@@ -6,11 +6,11 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('background').appendChild(renderer.domElement);
 
 // Set Camera Position and Angle
-camera.position.set(0, -6, 10); // Camera position
-camera.rotation.x = THREE.MathUtils.degToRad(30); // Rotate the camera by 30 degrees
+camera.position.set(0, -15, 10); // Camera position
+camera.rotation.x = THREE.MathUtils.degToRad(20); // Rotate the camera by 30 degrees
 
 // Line Material
-const lineMaterial = new THREE.LineBasicMaterial({ color: 0x3d108f, opacity: 0.8, transparent: true });
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0x2b0573, opacity: 0.8, transparent: true });
 const gridSize = 100;
 const amplitude = 1; // Increased amplitude for a more pronounced wave
 
@@ -43,7 +43,7 @@ scene.add(lines);
 
 // Animate the Wave
 function animateWave() {
-    const time = Date.now() * 0.001;
+    const time = Date.now() * 0.0008;
     lines.children.forEach((line) => {
         const positions = line.geometry.attributes.position.array;
 
