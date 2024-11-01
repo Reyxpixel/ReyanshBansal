@@ -2,6 +2,7 @@
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setClearColor(0x1e1f22, 1);
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('background').appendChild(renderer.domElement);
 
@@ -10,7 +11,7 @@ camera.position.set(0, -15, 10);
 camera.rotation.x = THREE.MathUtils.degToRad(20);
 
 // Line Material
-const lineMaterial = new THREE.LineBasicMaterial({ color: 0x2b0573, opacity: 0.8, transparent: true });
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, opacity: 0.8, transparent: true });
 const gridSize = 100;
 const amplitude = 1;
 
@@ -34,7 +35,7 @@ scene.add(lines);
 
 // Variables for Parallax Effect
 let targetX = 0, targetY = -15; // Target positions for smooth movement
-const parallaxStrength = 0.5; // Overall parallax strength
+const parallaxStrength = 1.5; // Overall parallax strength
 const easingFactor = 0.05; // Adjust this for slower or faster smoothing
 
 // Event Listener for Mouse Movement
