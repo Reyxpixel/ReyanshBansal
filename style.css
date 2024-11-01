@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    font-family: 'Montserrat', sans-serif;
     background-color: #23272a;
     color: #f1f1f1;
     overflow: hidden;
@@ -22,99 +22,159 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Ensure the background is behind other content */
+    z-index: -1;
 }
 
 /* Top Bar Styling */
 .top-bar {
     position: fixed;
-    top: 10px; /* Reduced gap from the top */
-    left: 10px; /* Reduced gap on the left */
-    right: 10px; /* Reduced gap on the right */
-    height: 60px; /* Adjust as needed */
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    height: 60px;
     display: flex;
     align-items: center;
-    padding: 0 20px; /* Space on left and right */
-    background: rgba(255, 255, 255, 0.1); /* Glassy background */
+    padding: 0 20px;
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
-    border-radius: 15px; /* Curved edges on all corners */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Increased thickness of stroke */
-    z-index: 1000; /* Ensure it's on top of the content */
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Drop shadow added */
+    z-index: 1000;
 }
 
-/* Top Bar Content */
 .top-bar-content {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-/* Logo */
 .logo {
     font-weight: bold;
-    color: #f1f1f1; /* Adjust as needed */
+    color: #f1f1f1;
 }
 
-/* Navigation Buttons */
 .nav-buttons {
     display: flex;
 }
 
 .nav-button {
-    margin-left: 20px; /* Space between buttons */
-    color: #f1f1f1; /* Button text color */
+    margin-left: 20px;
+    color: #f1f1f1;
     text-decoration: none;
-    font-weight: normal; /* Not bold */
+    font-weight: normal;
     transition: color 0.3s;
 }
 
 .nav-button:hover {
-    color: #7289da; /* Change color on hover */
+    color: #7289da;
 }
 
 /* Main Content */
 .container {
     position: relative;
     z-index: 1;
-    max-width: 800px;
-    margin: 100px auto; /* Space from top */
+    max-width: 900px;
+    margin: 100px auto;
     padding: 20px;
+}
+
+.card {
+    /* Background removed */
+    padding: 1rem 2rem;
+    border-radius: 1.25rem;
+}
+
+.loader {
+    color: rgb(255, 255, 255);
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 30px; /* Increased font size */
+    box-sizing: content-box;
+    height: 40px;
+    padding: 10px 10px;
+    display: flex;
+    border-radius: 8px;
+    justify-content: center; /* Centering content horizontally */
+}
+
+.words {
+    overflow: hidden;
+    position: relative;
+}
+.words::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        transparent 10%,
+        transparent 30%,
+        transparent 70%,
+        transparent 90%
+    );
+    z-index: 20;
+}
+
+.word {
+    font-weight: bold;
+    display: block;
+    height: 100%;
+    padding-left: 6px;
+    color: #700ef1;
+    font-size: 30px; /* Increased font size */
+    animation: spin_4991 10s infinite; /* Increased duration */
+}
+
+/* Scrolling Keyframe */
+@keyframes spin_4991 {
+    0% {
+        transform: translateY(0%);
+    }
+    10% {
+        transform: translateY(0%);
+    }
+    20% {
+        transform: translateY(-100%);
+    }
+    30% {
+        transform: translateY(-100%);
+    }
+    40% {
+        transform: translateY(-200%);
+    }
+    50% {
+        transform: translateY(-200%);
+    }
+    60% {
+        transform: translateY(-300%);
+    }
+    70% {
+        transform: translateY(-300%);
+    }
+    80% {
+        transform: translateY(-400%);
+    }
+    90% {
+        transform: translateY(-400%);
+    }
+    100% {
+        transform: translateY(-400%);
+    }
+}
+
+/* Glass Pane Styling */
+.container {
     backdrop-filter: blur(5px);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Increased thickness of stroke */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Drop shadow added */
+    padding: 30px;
+    margin-top: 100px;
+    text-align: left;
 }
 
-/* Header */
-h1 {
-    font-size: 2.5em;
-    color: #7289da;
-    margin-bottom: 10px;
-}
-
-p {
-    color: #b9bbbe;
-    font-size: 1.2em;
-    line-height: 1.6;
-}
-
-/* Button Styling */
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #7289da;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background-color: #5865f2;
+/* Added margin to center the loader text */
+.loader p {
+    margin-left: 50px; /* Adjust this value for desired spacing */
 }

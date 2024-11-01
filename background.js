@@ -11,7 +11,7 @@ camera.position.set(0, -15, 10);
 camera.rotation.x = THREE.MathUtils.degToRad(20);
 
 // Line Material
-const lineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, opacity: 0.8, transparent: true });
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0x111214, opacity: 0.8, transparent: true });
 const gridSize = 100;
 const amplitude = 1;
 
