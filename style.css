@@ -12,6 +12,7 @@ body {
     background-color: #23272a;
     color: #f1f1f1;
     overflow-x: hidden; /* Allow vertical scrolling but hide horizontal overflow */
+    overflow: overlay;
 }
 
 #background {
@@ -33,20 +34,6 @@ body {
     z-index: 0;
 }
 
-.u-shape {
-    position: absolute;
-    top: 400px;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    z-index: 1;
-}
-
-.u-shape path {
-    fill: #3a3f45;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
-}
-
 .top-bar {
     position: fixed;
     top: 10px;
@@ -56,10 +43,10 @@ body {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    background: rgba(52, 52, 52, 0.1);
+    backdrop-filter: blur(4px);
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(145, 145, 145, 0.081);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
 }
@@ -74,6 +61,7 @@ body {
     font-weight: bold;
     color: #f1f1f1;
     text-decoration: none;
+    font-size: 1.1rem;
 }
 
 .nav-buttons {
@@ -194,3 +182,100 @@ body {
     background: #2d3238;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
+/* Roadmap Section */
+.roadmap {
+    position: relative;
+    margin-top: 60px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.roadmap-header {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+
+.roadmap-line {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 1px);
+    z-index: 0;
+    height: 100%;
+    width: 2px;
+}
+
+.roadmap-item {
+    display: flex;
+    align-items: center;
+    margin: 60px 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.roadmap-item.alt {
+    flex-direction: row-reverse;
+}
+
+.roadmap-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    max-width: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin: 0 20px;
+}
+
+.roadmap-image img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.roadmap-text {
+    flex: 1;
+    background: rgba(52, 52, 52, 0.1);
+    backdrop-filter: blur(4px);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(145, 145, 145, 0.081);
+    color: #f1f1f1;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    height: 180px; /* Slightly shorter than the image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 20px;
+}
+
+*::-webkit-scrollbar {
+    width: 15px;
+    background-color: #1e1f22; /* No background for the scrollbar */
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent !important; /* Force transparency */
+    display: none; /* Completely hide the track */
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    border: 4px solid rgba(0, 0, 0, 0); /* Creates the gap */
+    background-color: rgba(0, 0, 0, 0.2);
+    background-clip: content-box;
+  }
+  
