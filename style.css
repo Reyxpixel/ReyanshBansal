@@ -8,11 +8,12 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
     background-color: #23272a;
     color: #f1f1f1;
     overflow-x: hidden; /* Allow vertical scrolling but hide horizontal overflow */
     overflow: overlay;
+    font-family: 'JetBrains Mono', monospace;   
 }
 
 #background {
@@ -43,7 +44,7 @@ body {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    background: rgba(52, 52, 52, 0.1);
+    background: rgba(98, 98, 98, 0.1);
     backdrop-filter: blur(4px);
     border-radius: 15px;
     border: 1px solid rgba(145, 145, 145, 0.081);
@@ -88,12 +89,12 @@ body {
 
 .loader {
     color: rgb(255, 255, 255);
-    font-family: "Montserrat", sans-serif;
     font-weight: bold;
     font-size: 40px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 30px;
+    margin-left: 40px; /* Adjust this value to move everything left */
 }
 
 .words {
@@ -102,7 +103,7 @@ body {
     height: 50px;
     transform-style: preserve-3d;
     animation: rotateCube 6.67s infinite ease-in-out;
-    margin-left: 10px;
+    margin-left: 0; /* Adjust this value for the words specifically */
 }
 
 .word {
@@ -155,17 +156,18 @@ body {
     max-width: 1100px;
     margin: 120px auto;
     padding: 20px;
-    backdrop-filter: blur(5px);
-    background: #1e1f22;
-    box-shadow: 15px 15px 30px #0e0f10, -15px -15px 30px rgb(50, 50, 50);
+    background: rgba(98, 98, 98, 0.1);
+    backdrop-filter: blur(4px);
     border-radius: 15px;
+    border: 1px solid rgba(145, 145, 145, 0.081);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding: 32px;
     margin-top: 140px;
     text-align: left;
 }
 
 .loader p {
-    margin-left: 75px;
+    margin-left: 0px;
 }
 
 .embed-container {
@@ -264,7 +266,7 @@ body {
 
 *::-webkit-scrollbar {
     width: 15px;
-    background-color: #1e1f22; /* No background for the scrollbar */
+    background-color: #171717; /* No background for the scrollbar */
   }
   
   *::-webkit-scrollbar-track {
@@ -275,7 +277,18 @@ body {
   *::-webkit-scrollbar-thumb {
     border-radius: 20px;
     border: 4px solid rgba(0, 0, 0, 0); /* Creates the gap */
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #222222;
     background-clip: content-box;
   }
-  
+  [data-pattern="grid"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #171717;
+    background-image: 
+        linear-gradient(0deg, #222222 1px, transparent 1px),
+        linear-gradient(90deg, #222222 1px, transparent 1px);
+    background-size: 80px 80px;
+    z-index: -1;
+}

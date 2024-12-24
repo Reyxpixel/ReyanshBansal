@@ -6,6 +6,7 @@
     <title>Reyansh Bansal</title>
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="top-bar">
@@ -53,8 +54,21 @@
             <div class="roadmap-image"><img src="project3.jpg" alt="Project 3"></div>
         </div>
     </div>
+    <div data-pattern="grid"></div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="background.js"></script> -->
+    <script>
+        function adjustGridHeight() {
+            const grid = document.querySelector('[data-pattern="grid"]');
+            if (grid) {
+                const docHeight = document.documentElement.scrollHeight;
+                grid.style.height = `${docHeight}px`;
+            }
+        }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="background.js"></script>
+        window.addEventListener('load', adjustGridHeight);
+        window.addEventListener('resize', adjustGridHeight);
+        window.addEventListener('scroll', adjustGridHeight);
+    </script>
 </body>
 </html>
