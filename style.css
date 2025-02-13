@@ -292,3 +292,8 @@ body {
     background-size: 80px 80px;
     z-index: -1;
 }
+
+html {
+    scroll-behavior: smooth;
+  }
+  
