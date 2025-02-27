@@ -1,56 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reyansh Bansal</title>
-    <link rel="icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reyansh Bansal - Portfolio</title>
+  <meta name="description" content="Apple-inspired design portfolio">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="top-bar">
-        <div class="top-bar-content">
-            <a href="index.html" class="logo">REYANSH BANSAL</a>
-            <div class="nav-buttons">
-                <a href="about.html" class="nav-button">About</a>
-                <a href="portfolio.html" class="nav-button">Portfolio</a>
-                <a href="contact.html" class="nav-button">Contact</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="background"></div>
-
+<body class="min-h-screen">
+  <header>
     <div class="container">
-        <div class="card">
-            <div class="loader">
-                <p>Hey, I'm Reyansh and I am a</p>
-                <div class="words">
-                    <span class="word">Programmer</span>
-                    <span class="word">Creator</span>
-                    <span class="word">Designer</span>
-                    <span class="word">Editor</span>
-                </div>
-            </div>
+      <nav>
+        <div class="logo-container">
+            <a href="/" class="logo">
+                <img src="logo.png" alt="Logo" class="logo-image">
+                <span>Reyansh Bansal</span>
+              </a>
         </div>
+        <div class="nav-links">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#portfolio-grid" class="nav-link">Work</a>
+          <a href="#timeline" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+      </nav>
     </div>
-    <div data-pattern="grid"></div>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="background.js"></script> -->
-    <script>
-        function adjustGridHeight() {
-            const grid = document.querySelector('[data-pattern="grid"]');
-            if (grid) {
-                const docHeight = document.documentElement.scrollHeight;
-                grid.style.height = `${docHeight}px`;
-            }
-        }
+  </header>
 
-        window.addEventListener('load', adjustGridHeight);
-        window.addEventListener('resize', adjustGridHeight);
-        window.addEventListener('scroll', adjustGridHeight);
-    </script>
-    <!-- I have made this code with mishi -->
-</body>
-</html>
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="text-gradient">Hey, I am Reyansh and I'm a</h1>
+          <div class="loader">
+            <div class="words">
+              <span class="word">Programmer</span>
+              <span class="word">Creator</span>
+              <span class="word">Designer</span>
+              <span class="word">Editor</span>
+            </div>
+          </div>
+          <a href="#contact" class="apple-button">Get in Touch</a>
+        </div>
+        <div class="hero-image-container">
+          <img src="HomeImg.png" alt="Creative work showcase" class="hero-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Wear Your Story Section -->
+    <section id="wear-your-story" class="section">
+        <div class="container">
+          <h2 class="section-title">A little bit about me...</h2>
+          <div class="story-content">
+            <div class="story-text">
+              <p>I am a B.Tech undergrad at IIIT Delhi, pursuing Computer Science engineering and design. I am based in Delhi NCR. I am a driven and confident individual with a passion for creative problem solving and leadership, I believe I excel at fostering collaboration and staying focused on achieving goals. Currently I'm working on building some of my skills, making some projects and taking on some freelancing and commission work to grow my skillset.</p>
+            </div>
+            <div class="story-image">
+              <img src="https://placehold.co/500x300" alt="Brand storytelling" class="hover-lift">
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Feature Carousel Section -->
+      <section id="feature-carousel" class="section">
+        <div class="container">
+          <h2 class="section-title">Some of my current Skills</h2>
+          <div class="carousel">
+            <div class="carousel-item hover-lift">
+              <div class="feature-card">
+                <h3>Programming</h3>
+                <p>Projects in Python and JavaScript. programming Data Structure and Algorithms in C/C++</p>
+              </div>
+            </div>
+            <div class="carousel-item hover-lift">
+              <div class="feature-card">
+                <h3>Web Development</h3>
+                <p>Experienced with HTML, CSS and JavaScript. Worked with AI tools such as v0.dev and Deepseek.</p>
+              </div>
+            </div>
+            <div class="carousel-item hover-lift">
+              <div class="feature-card">
+                <h3>UI/UX Design</h3>
+                <p>Creating Intuitive interfaces in tools such as Figma, Miro, Jira with prototypical and responsive models.</p>
+              </div>
+            </div>
+            <div class="carousel-item hover-lift">
+                <div class="feature-card">
+                  <h3>Content Creation</h3>
+                  <p>Extremely Experienced with Adobe Photoshop, Adobe Illustrator, Video Editing and Graphic Design.</p>
+                </div>
+              </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Portfolio Grid Section -->
+      <section id="portfolio-grid" class="section">
+        <div class="container">
+          <h2 class="section-title">Work</h2>
+          <div class="portfolio-grid">
+            <div class="portfolio-item hover-lift">
+              <img src="https://placehold.co/400x300" alt="Project 1">
+              <div class="portfolio-overlay">
+                <h3>Project One</h3>
+                <p>Web Design</p>
+              </div>
+            </div>
+            <div class="portfolio-item hover-lift">
+              <img src="https://placehold.co/400x300" alt="Project 2">
+              <div class="portfolio-overlay">
+                <h3>Project Two</h3>
+                <p>Brand Identity</p>
+              </div>
+            </div>
+            <div class="portfolio-item hover-lift">
+              <img src="https://placehold.co/400x300" alt="Project 3">
+              <div class="portfolio-overlay">
+                <h3>Project Three</h3>
+                <p>UI/UX Design</p>
+              </div>
+            </div>
+            <div class="portfolio-item hover-lift">
+              <img src="https://placehold.co/400x300" alt="Project 4">
+              <div class="portfolio-overlay">
+                <h3>Project Four</h3>
+                <p>Mobile App</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Timeline Section -->
+      <section id="timeline" class="section">
+        <div class="container">
+          <h2 class="section-title">Our Journey</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content hover-lift">
+                <h3>2018</h3>
+                <p>Founded our creative studio with a vision to create meaningful digital experiences.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content hover-lift">
+                <h3>2020</h3>
+                <p>Expanded our team and services to include full-stack development and brand strategy.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content hover-lift">
+                <h3>2023</h3>
+                <p>Celebrating 5 years of creating award-winning digital experiences for clients worldwide.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Marquee Section -->
+      <section id="marquee" class="section">
+        <div class="marquee-container">
+          <div class="marquee-content">
+            <span>Design</span>
+            <span>•</span>
+            <span>Development</span>
+            <span>•</span>
+            <span>Strategy</span>
+            <span>•</span>
+            <span>Branding</span>
+            <span>•</span>
+            <span>UX</span>
+            <span>•</span>
+            <span>Design</span>
+            <span>•</span>
+            <span>Development</span>
+            <span>•</span>
+            <span>Strategy</span>
+            <span>•</span>
+            <span>Branding</span>
+            <span>•</span>
+            <span>UX</span>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Contact Form Section -->
+      <section id="contact" class="section">
+        <div class="container">
+          <h2 class="section-title">Get in Touch</h2>
+          <div class="contact-container">
+            <div class="contact-info">
+              <p>Ready to start your project? Contact us today and let's create something amazing together.</p>
+              <div class="contact-details">
+                <p><strong>Email:</strong> hello@minimalagency.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Location:</strong> San Francisco, CA</p>
+              </div>
+            </div>
+            <form class="contact-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="apple-button">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Logo" class="logo-image">
+                <span>Minimal Creative Agency</span>
+              </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h3>Navigation</h3>
+              <a href="#">Home</a>
+              <a href="#portfolio-grid">Work</a>
+              <a href="#timeline">About</a>
+              <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-column">
+              <h3>Social</h3>
+              <a href="#">Instagram</a>
+              <a href="#">Twitter</a>
+              <a href="#">LinkedIn</a>
+              <a href="#">Dribbble</a>
+            </div>
+            <div class="footer-column">
+              <h3>Legal</h3>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; <span id="current-year">2024</span> Minimal Creative Agency. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  
+    <!-- Direct link to script with proper path for GitHub Pages -->
+    <script src="./script.js"></script>
+  </body>
+  </html>
