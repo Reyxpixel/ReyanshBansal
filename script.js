@@ -1,39 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 3D effect for hero image
+  // Remove 3D effect for hero image - no more perspective effects
   const heroImageWrapper = document.querySelector(".hero-image-wrapper")
   const socialIcons = document.querySelectorAll(".social-icon")
   const orbitLines = document.querySelectorAll(".orbit-line")
 
   if (heroImageWrapper) {
-    document.addEventListener("mousemove", (e) => {
-      const { clientX, clientY } = e
-      const { innerWidth, innerHeight } = window
+    //This section is removed as per the update
+  }
 
-      // Calculate rotation based on mouse position
-      const rotateX = 5 - (clientY / innerHeight) * 10
-      const rotateY = (clientX / innerWidth) * 10 - 5
+  // Make social icons clickable with proper links
+  if (socialIcons) {
+    socialIcons.forEach((icon) => {
+      icon.addEventListener("click", (e) => {
+        const iconType = icon.getAttribute("data-icon")
+        let url = "#"
 
-      // Apply rotation to hero image wrapper
-      heroImageWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+        // Set appropriate URLs for each social icon
+        switch (iconType) {
+          case "github":
+            url = "https://github.com/"
+            break
+          case "linkedin":
+            url = "https://linkedin.com/"
+            break
+          case "twitter":
+            url = "https://twitter.com/"
+            break
+          case "instagram":
+            url = "https://instagram.com/"
+            break
+          case "dribbble":
+            url = "https://dribbble.com/"
+            break
+        }
 
-      // Move orbit lines based on mouse position
-      orbitLines.forEach((line) => {
-        const moveX = (clientX / innerWidth - 0.5) * 10
-        const moveY = (clientY / innerHeight - 0.5) * 10
-
-        // Get the original rotation
-        const rotation =
-          line.style.transform.match(/rotate$$(\d+)deg$$/)?.[1] || line.className.includes("orbit-line:nth-child(1)")
-            ? 0
-            : line.className.includes("orbit-line:nth-child(2)")
-              ? 72
-              : line.className.includes("orbit-line:nth-child(3)")
-                ? 144
-                : line.className.includes("orbit-line:nth-child(4)")
-                  ? 216
-                  : 288
-
-        line.style.transform = `rotate(${rotation}deg) translateX(${moveX}px) translateY(${moveY}px)`
+        window.open(url, "_blank")
       })
     })
   }
@@ -49,13 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const scrollY = window.scrollY
       const opacity = Math.min(0.3 + scrollY / 1000, 0.8)
       header.style.background = `rgba(30, 30, 35, ${opacity})`
-
       // Add subtle rotation for 3D effect
       const rotateX = Math.min(scrollY / 1000, 0.5)
       header.style.transform = `perspective(1000px) rotateX(${rotateX}deg)`
     })
   }
-
 
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const targetElement = document.querySelector(targetId)
       if (targetElement) {
-        const headerHeight = header ? header.offsetHeight : 0
+        const headerHeight = 0 // No offset needed since header is not fixed
         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight
 
         window.scrollTo({
@@ -163,20 +162,55 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add event listeners to buttons
     if (prevButton) {
       prevButton.addEventListener("click", () => {
-        currentIndex = Math.max(0, currentIndex - 1)
-        updateCarouselPosition()
+        if (currentIndex > 0) {
+          // Animate the transition
+          carouselItems.forEach((item, index) => {
+            if (index === currentIndex - 1) {
+              // Fade in the new leftmost item
+              item.style.opacity = "0"
+              setTimeout(() => {
+                item.style.opacity = "1"
+              }, 50)
+            } else if (index === currentIndex + itemsPerView - 1) {
+              // Fade out the rightmost item
+              item.style.opacity = "0"
+            }
+          })
+
+          currentIndex = Math.max(0, currentIndex - 1)
+          updateCarouselPosition()
+        }
       })
     }
 
     if (nextButton) {
       nextButton.addEventListener("click", () => {
-        currentIndex = Math.min(maxIndex, currentIndex + 1)
-        updateCarouselPosition()
+        if (currentIndex < maxIndex) {
+          // Animate the transition
+          carouselItems.forEach((item, index) => {
+            if (index === currentIndex) {
+              // Fade out the leftmost item
+              item.style.opacity = "0"
+            } else if (index === currentIndex + itemsPerView) {
+              // Fade in the new rightmost item
+              item.style.opacity = "0"
+              setTimeout(() => {
+                item.style.opacity = "1"
+              }, 50)
+            }
+          })
+
+          currentIndex = Math.min(maxIndex, currentIndex + 1)
+          updateCarouselPosition()
+        }
       })
     }
 
     function updateCarouselPosition() {
-      const translateX = -currentIndex * itemWidth
+      // Center the visible items
+      const visibleWidth = itemsPerView * itemWidth - 32 // Subtract the last gap
+      const offset = (containerWidth - visibleWidth) / 2
+      const translateX = -currentIndex * itemWidth + offset
       carousel.style.transform = `translateX(${translateX}px)`
 
       // Update button states
@@ -189,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButton.style.opacity = currentIndex >= maxIndex ? "0.5" : "1"
       }
 
-      // Hide partially visible items
+      // Update visibility and opacity of items
       carouselItems.forEach((item, index) => {
         if (index < currentIndex || index >= currentIndex + itemsPerView) {
           item.style.visibility = "hidden"
@@ -230,20 +264,55 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add event listeners to buttons
     if (prevButtonPortfolio) {
       prevButtonPortfolio.addEventListener("click", () => {
-        currentIndexPortfolio = Math.max(0, currentIndexPortfolio - 1)
-        updatePortfolioPosition()
+        if (currentIndexPortfolio > 0) {
+          // Animate the transition
+          portfolioGridItems.forEach((item, index) => {
+            if (index === currentIndexPortfolio - 1) {
+              // Fade in the new leftmost item
+              item.style.opacity = "0"
+              setTimeout(() => {
+                item.style.opacity = "1"
+              }, 50)
+            } else if (index === currentIndexPortfolio + itemsPerView - 1) {
+              // Fade out the rightmost item
+              item.style.opacity = "0"
+            }
+          })
+
+          currentIndexPortfolio = Math.max(0, currentIndexPortfolio - 1)
+          updatePortfolioPosition()
+        }
       })
     }
 
     if (nextButtonPortfolio) {
       nextButtonPortfolio.addEventListener("click", () => {
-        currentIndexPortfolio = Math.min(maxIndexPortfolio, currentIndexPortfolio + 1)
-        updatePortfolioPosition()
+        if (currentIndexPortfolio < maxIndexPortfolio) {
+          // Animate the transition
+          portfolioGridItems.forEach((item, index) => {
+            if (index === currentIndexPortfolio) {
+              // Fade out the leftmost item
+              item.style.opacity = "0"
+            } else if (index === currentIndexPortfolio + itemsPerView) {
+              // Fade in the new rightmost item
+              item.style.opacity = "0"
+              setTimeout(() => {
+                item.style.opacity = "1"
+              }, 50)
+            }
+          })
+
+          currentIndexPortfolio = Math.min(maxIndexPortfolio, currentIndexPortfolio + 1)
+          updatePortfolioPosition()
+        }
       })
     }
 
     function updatePortfolioPosition() {
-      const translateX = -currentIndexPortfolio * itemWidthPortfolio
+      // Center the visible items
+      const visibleWidth = itemsPerView * itemWidthPortfolio - 32 // Subtract the last gap
+      const offset = (containerWidth - visibleWidth) / 2
+      const translateX = -currentIndexPortfolio * itemWidthPortfolio + offset
       portfolioGrid.style.transform = `translateX(${translateX}px)`
 
       // Update button states
@@ -256,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButtonPortfolio.style.opacity = currentIndexPortfolio >= maxIndexPortfolio ? "0.5" : "1"
       }
 
-      // Hide partially visible items
+      // Update visibility and opacity of items
       portfolioGridItems.forEach((item, index) => {
         if (index < currentIndexPortfolio || index >= currentIndexPortfolio + itemsPerView) {
           item.style.visibility = "hidden"
@@ -278,3 +347,4 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 })
+

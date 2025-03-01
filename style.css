@@ -105,12 +105,12 @@ a {
 
 /* Header styles */
 header {
-  position: fixed; /* Changed from sticky to fixed for freezepane effect */
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(30, 30, 35, 0.3);
+  background: rgba(30, 30, 35, 0.7);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -119,7 +119,6 @@ header {
   display: flex;
   align-items: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  position: relative;
   overflow: hidden;
 }
 
@@ -277,16 +276,20 @@ nav {
   color: hsl(var(--foreground));
 }
 
+/* Add more space below the "A little bit about me" heading */
+#wear-your-story .section-title {
+  margin-bottom: calc(var(--section-gap) + 50px);
+}
+
 /* Hero section */
 .hero-section {
-  padding: 4rem 0;
-  margin-top: 4rem; /* Add margin to account for fixed header */
+  padding: 2rem 0; /* Reduced padding to decrease gap */
   perspective: 1000px;
 }
 
 @media (min-width: 768px) {
   .hero-section {
-    padding: 6rem 0;
+    padding: 3rem 0; /* Reduced padding to decrease gap */
   }
 }
 
@@ -337,7 +340,6 @@ nav {
   display: flex;
   justify-content: center;
   position: relative;
-  perspective: 1000px;
 }
 
 .hero-image-wrapper {
@@ -346,17 +348,15 @@ nav {
   /* 20% smaller */
   width: 80%;
   margin: 0 auto;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
 .hero-image {
   border-radius: var(--radius);
   position: relative;
-  z-index: 2;
+  z-index: 1; /* Changed from 2 to 1 so bubbles can be on top */
   width: 100%;
-  transform: translateZ(20px);
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
 .social-links {
@@ -365,8 +365,8 @@ nav {
   height: 100%;
   top: 0;
   left: 0;
+  z-index: 2; /* Changed from 1 to 2 so bubbles appear on top of image */
   transform-style: preserve-3d;
-  z-index: 1;
 }
 
 .social-icon {
@@ -383,7 +383,7 @@ nav {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   z-index: 3;
-  transform: translateZ(40px);
+  cursor: pointer; /* Added cursor pointer for clickable bubbles */
 }
 
 .social-icon:hover {
@@ -466,7 +466,6 @@ nav {
   }
 }
 
-
 .hero-image-wrapper::before {
   content: "";
   position: absolute;
@@ -483,16 +482,6 @@ nav {
   height: 100%;
   z-index: 2;
   pointer-events: none;
-}
-
-.social-icon[data-icon="github"],
-.social-icon[data-icon="linkedin"],
-.social-icon[data-icon="twitter"],
-.social-icon[data-icon="instagram"],
-.social-icon[data-icon="dribbble"] {
-  animation-duration: 28s; /* 40% slower animation */
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
 }
 
 /* Wear Your Story section */
@@ -536,6 +525,8 @@ nav {
 .carousel-wrapper {
   overflow: hidden;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .carousel {
@@ -547,6 +538,7 @@ nav {
 
 .carousel-item {
   flex: 0 0 300px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .carousel-button {
@@ -616,6 +608,7 @@ nav {
   border-radius: var(--radius);
   overflow: hidden;
   flex: 0 0 300px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .portfolio-item img {
@@ -639,6 +632,7 @@ nav {
   color: white;
   opacity: 0;
   transition: opacity 0.3s ease;
+  border-radius: 0 0 var(--radius) var(--radius); /* Match the border radius of the card */
 }
 
 .portfolio-item:hover .portfolio-overlay {
@@ -717,22 +711,24 @@ nav {
 /* Marquee section */
 .marquee-container {
   overflow: hidden;
-  background-color: hsl(var(--light-grey)); /* Added background color matching footer */
+  background-color: #1e1e20; /* Added background color matching footer */
   padding: 4rem 0;
 }
 
 .marquee-content {
   display: flex;
-  animation: marquee 20s linear infinite;
+  animation: marquee 30s linear infinite;
   white-space: nowrap;
+  gap: 2rem; /* Increased gap to prevent text overlap */
 }
 
 .marquee-content span {
-  padding: 0 1.5rem;
-  font-size: 3.75rem;
-  font-weight: 600;
-  color: transparent;
-  -webkit-text-stroke: 1px white;
+  padding: 0 1rem;
+  font-size: 2.5rem; /* Reduced font size to fit better */
+  font-weight: 800;
+  color: #1e1e20; /* Same color as background */
+  -webkit-text-stroke: 1px white; /* White stroke */
+  display: inline-block; /* Ensure proper spacing */
 }
 
 @keyframes marquee {
@@ -766,6 +762,10 @@ nav {
   font-size: 1.125rem;
   margin-bottom: 2rem;
   color: hsl(var(--muted-foreground));
+}
+
+.contact-intro {
+  margin-top: 20px; /* Added margin to align with form */
 }
 
 .contact-details p {
@@ -1033,3 +1033,4 @@ footer {
     transform: rotateX(360deg);
   }
 }
+
