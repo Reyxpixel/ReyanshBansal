@@ -20,8 +20,8 @@
   --input: 220 3% 18%;
   --ring: 220 3% 30%;
   --radius: 0.5rem;
-  --light-grey: 220 3% 12%;
-  --section-gap: 4rem;
+  --light-grey: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
+  --section-gap: 5rem; /* Increased from 4rem to 5rem (added 1rem = ~16px) */
 }
 
 .logo-image {
@@ -110,7 +110,7 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(30, 30, 35, 0.7);
+  background: rgba(25, 25, 26, 0.7); /* Changed from #1e1e20 to #1e1e20 */
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -237,7 +237,7 @@ nav {
   display: inline-block;
   padding: 0.75rem 2rem;
   border-radius: 9999px;
-  background-color: hsl(var(--primary));
+  background-color: #1e1e20; /* Changed from hsl(var(--primary)) to #1e1e20 */
   color: hsl(var(--primary-foreground));
   font-weight: 600;
   transition: all 0.3s ease-in-out;
@@ -247,7 +247,7 @@ nav {
 }
 
 .apple-button:hover {
-  background-color: hsla(var(--primary), 0.9);
+  background-color: rgba(25, 25, 26, 0.9); /* Changed to match new color */
   transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -260,11 +260,13 @@ nav {
 /* Section styles */
 .section {
   padding: var(--section-gap) 0;
+  margin-bottom: 30px; /* Added spacing between sections */
 }
 
 @media (min-width: 768px) {
   .section {
     padding: 6rem 0;
+    margin-bottom: 50px; /* Added spacing between sections */
   }
 }
 
@@ -274,6 +276,9 @@ nav {
   margin-bottom: var(--section-gap);
   text-align: center;
   color: hsl(var(--foreground));
+  position: relative; /* For typing animation */
+  display: inline-block;
+  width: 100%;
 }
 
 /* Add more space below the "A little bit about me" heading */
@@ -520,6 +525,8 @@ nav {
   width: 100%;
   overflow: hidden;
   padding: 0 50px;
+  display: flex;
+  justify-content: center; /* Center the carousel */
 }
 
 .carousel-wrapper {
@@ -545,7 +552,7 @@ nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(40, 40, 45, 0.7);
+  background: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
   backdrop-filter: blur(5px);
   border: none;
   width: 40px;
@@ -561,7 +568,7 @@ nav {
 }
 
 .carousel-button:hover {
-  background: rgba(60, 60, 65, 0.9);
+  background: rgba(25, 25, 26, 0.9);
 }
 
 .prev-button,
@@ -711,7 +718,7 @@ nav {
 /* Marquee section */
 .marquee-container {
   overflow: hidden;
-  background-color: #1e1e20; /* Added background color matching footer */
+  background-color: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
   padding: 4rem 0;
 }
 
@@ -724,9 +731,9 @@ nav {
 
 .marquee-content span {
   padding: 0 1rem;
-  font-size: 2.5rem; /* Reduced font size to fit better */
+  font-size: 3.5rem; /* Increased font size to be almost as large as the strip */
   font-weight: 800;
-  color: #1e1e20; /* Same color as background */
+  color: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
   -webkit-text-stroke: 1px white; /* White stroke */
   display: inline-block; /* Ensure proper spacing */
 }
@@ -790,7 +797,7 @@ nav {
   padding: 0.75rem;
   border: 1px solid hsl(var(--input));
   border-radius: var(--radius);
-  background-color: rgba(30, 30, 35, 0.3);
+  background-color: rgba(25, 25, 26, 0.3); /* Changed from #1e1e20 to #1e1e20 */
   color: hsl(var(--foreground));
   font-family: inherit;
   font-size: 1rem;
@@ -806,7 +813,7 @@ nav {
 
 /* Footer styles */
 footer {
-  background-color: hsl(var(--light-grey));
+  background-color: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
   color: hsl(var(--muted-foreground));
   padding: 4rem 0 2rem;
   border-top: 1px solid hsl(var(--border));
@@ -823,16 +830,17 @@ footer {
 @media (min-width: 768px) {
   .footer-content {
     flex-direction: row;
-    justify-content: center;
+    justify-content: center; /* Changed to center for better spacing */
+    gap: 8rem; /* Add gap between logo and links */
   }
 
   .footer-logo {
-    margin-right: 2rem;
+    margin-right: 0;
   }
 
   .footer-links {
     display: flex;
-    gap: 3rem;
+    gap: 4rem; /* Increased from 3rem to 4rem (40px more) */
   }
 }
 
@@ -909,7 +917,7 @@ footer {
 }
 
 .dark footer {
-  background-color: hsl(var(--light-grey));
+  background-color: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
   color: hsl(var(--muted-foreground));
 }
 
@@ -1031,6 +1039,32 @@ footer {
   }
   100% {
     transform: rotateX(360deg);
+  }
+}
+
+/* Terminal typing animation for section titles */
+.typing-animation {
+  position: relative;
+}
+
+.typing-animation::after {
+  content: "_";
+  position: absolute;
+  right: -10px;
+  animation: blink 0.7s infinite;
+}
+
+.typing-animation-done::after {
+  display: none;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }
 

@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", () => {
       const scrollY = window.scrollY
       const opacity = Math.min(0.3 + scrollY / 1000, 0.8)
-      header.style.background = `rgba(30, 30, 35, ${opacity})`
+      header.style.background = `rgba(25, 25, 26, ${opacity})`
       // Add subtle rotation for 3D effect
       const rotateX = Math.min(scrollY / 1000, 0.5)
       header.style.transform = `perspective(1000px) rotateX(${rotateX}deg)`
@@ -62,7 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault()
 
       const targetId = this.getAttribute("href")
-      if (targetId === "#") return
+      if (targetId === "#") {
+        // Scroll to top when home button is clicked
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        })
+        return
+      }
 
       const targetElement = document.querySelector(targetId)
       if (targetElement) {
@@ -77,27 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Form submission handling
+  // Form submission handling with Formspree
   const contactForm = document.querySelector(".contact-form")
   if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault()
+    contactForm.setAttribute("action", "https://formspree.io/f/xanqrdol")
+    contactForm.setAttribute("method", "POST")
 
-      // Get form data
-      const name = this.querySelector("#name").value
-      const email = this.querySelector("#email").value
-      const message = this.querySelector("#message").value
-
-      // Simple validation
-      if (!name || !email || !message) {
-        alert("Please fill in all fields")
-        return
-      }
-
-      // Here you would normally send the data to a server
-      // For demo purposes, we'll just show an alert
-      alert(`Thank you for your message, ${name}! We'll get back to you soon.`)
-      this.reset()
+    contactForm.addEventListener("submit", (e) => {
+      // Let Formspree handle the submission
+      // No need to prevent default
     })
   }
 
@@ -245,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Carousel functionality for portfolio section
+  // Carousel functionality for portfolio section - using the same animation as skills section
   const portfolioGrid = document.querySelector(".portfolio-grid")
   const portfolioGridItems = document.querySelectorAll(".portfolio-item")
   const prevButtonPortfolio = document.querySelector(".prev-button-portfolio")
@@ -346,5 +341,52 @@ document.addEventListener("DOMContentLoaded", () => {
       updatePortfolioPosition()
     })
   }
+
+  // Add terminal typing animation to section titles when they become visible
+  const sectionTitles = document.querySelectorAll(".section-title")
+
+  // Store the original text of each title
+  sectionTitles.forEach((title) => {
+    title.setAttribute("data-original-text", title.textContent)
+    title.textContent = ""
+  })
+
+  // Create an intersection observer
+  const titleObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const title = entry.target
+          const titleText = title.getAttribute("data-original-text")
+
+          // Only start animation if it hasn't been animated yet
+          if (title.textContent === "") {
+            title.classList.add("typing-animation")
+
+            let i = 0
+            const typingInterval = setInterval(() => {
+              if (i < titleText.length) {
+                title.textContent += titleText.charAt(i)
+                i++
+              } else {
+                clearInterval(typingInterval)
+                title.classList.remove("typing-animation")
+                title.classList.add("typing-animation-done")
+              }
+            }, 100) // Adjust typing speed here
+          }
+
+          // Unobserve after animation starts
+          titleObserver.unobserve(title)
+        }
+      })
+    },
+    { threshold: 0.5 },
+  ) // Trigger when 50% of the element is visible
+
+  // Observe all section titles
+  sectionTitles.forEach((title) => {
+    titleObserver.observe(title)
+  })
 })
 
