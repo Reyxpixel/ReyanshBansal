@@ -1068,3 +1068,19 @@ footer {
   }
 }
 
+*::-webkit-scrollbar {
+  width: 15px;
+  background-color: #0f0f10; /* No background for the scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent !important; /* Force transparency */
+  display: none; /* Completely hide the track */
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  border: 4px solid #0f0f10; /* Creates the gap */
+  background-color: #1e1e20;
+  background-clip: content-box;
+}
