@@ -289,7 +289,7 @@ nav {
 
 @media (min-width: 768px) {
   .hero-section {
-    padding: 3rem 0; /* Reduced padding to decrease gap */
+    padding: 1rem 0; /* Reduced padding to decrease gap */
   }
 }
 
