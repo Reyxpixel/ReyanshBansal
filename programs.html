@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programming Projects - Reyansh Bansal</title>
+  <meta name="description" content="Programming projects by Reyansh Bansal">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-updates.css">
+  <link rel="stylesheet" href="style-font.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .projects-section {
+      padding: var(--section-gap) 0;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .project-card {
+      background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card-foreground), 0.05));
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .project-content {
+      padding: 1.5rem;
+    }
+    
+    .project-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .project-description {
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .project-tag {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .project-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    
+    .project-link:hover {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo-container">
+          <a href="index.html" class="logo">
+            <img src="Images/logo.png" alt="Logo" class="logo-image">
+            <span>Reyansh Bansal</span>
+          </a>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#wear-your-story" class="nav-link">About</a>
+          <a href="index.html#work-section" class="nav-link">Work</a>
+          <a href="portfolio.html" class="nav-link">Designs</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="projects-section">
+      <div class="container">
+        <h1 class="section-title">Programming Projects</h1>
+        
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <img src="Images/Proj0.png" alt="Discord Bot" class="project-image">
+            <div class="project-content">
+              <h3 class="project-title">Discord Bot</h3>
+              <p class="project-description">A custom Discord bot built with discord.js that provides moderation, music playback, and utility commands for server management.</p>
+              <div class="project-tags">
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Discord.js</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 2 -->
+          <div class="project-card">
+            <img src="https://placehold.co/600x400" alt="Data Visualization" class="project-image">
+            <div class="project-content">
+              <h3 class="project-title">Data Visualization</h3>
+              <p class="project-description">Interactive data visualization dashboard built with React and D3.js, displaying complex datasets in an intuitive and engaging way.</p>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">D3.js</span>
+                <span class="project-tag">CSS</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 3 -->
+          <div class="project-card">
+            <img src="https://placehold.co/600x400" alt="Mobile App" class="project-image">
+            <div class="project-content">
+              <h3 class="project-title">Mobile App</h3>
+              <p class="project-description">A cross-platform mobile application built with React Native for task management and productivity tracking.</p>
+              <div class="project-tags">
+                <span class="project-tag">React Native</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Firebase</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 4 -->
+          <div class="project-card">
+            <img src="https://placehold.co/600x400" alt="Portfolio Website" class="project-image">
+            <div class="project-content">
+              <h3 class="project-title">Portfolio Website</h3>
+              <p class="project-description">A responsive portfolio website built with HTML, CSS, and JavaScript, featuring interactive elements and modern design.</p>
+              <div class="project-tags">
+                <span class="project-tag">HTML</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Three.js</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                  GitHub
+                </a>
+                <a href="#" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="Images/logo.png" alt="Logo" class="logo-image">
+          <span>Reyansh Bansal</span>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Navigation</h3>
+            <a href="index.html">Home</a>
+            <a href="index.html#wear-your-story">About</a>
+            <a href="index.html#work-section">Work</a>
+            <a href="portfolio.html">Designs</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h3>Social</h3>
+            <a href="https://www.instagram.com/reyansh.bansal/" target="_blank">Instagram</a>
+            <a href="https://x.com/Reyxpixel" target="_blank">Twitter</a>
+            <a href="https://www.linkedin.com/in/reyansh-bansal-0a3370288/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Reyxpixel" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year">2024</span> Reyansh Bansal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      
+      // Add header animation
+      const header = document.querySelector("header");
+      if (header) {
+        window.addEventListener("scroll", () => {
+          const scrollY = window.scrollY;
+          const opacity = Math.min(0.3 + scrollY / 1000, 0.8);
+          header.style.background = `rgba(35, 35, 37, ${opacity})`;
+          
+          if (scrollY > 50) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+

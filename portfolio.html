@@ -3,48 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You - Reyansh Bansal</title>
-  <meta name="description" content="Thank you for contacting Reyansh Bansal">
+  <title>Design Portfolio - Reyansh Bansal</title>
+  <meta name="description" content="Design portfolio of Reyansh Bansal">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style-updates.css">
+  <link rel="stylesheet" href="portfolio.css">
   <link rel="stylesheet" href="style-font.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Use system font stack with SF Pro for Apple devices -->
   <style>
-    .thankyou-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 70vh;
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .thankyou-icon {
-      width: 80px;
-      height: 80px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    
-    .thankyou-title {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .thankyou-message {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-bottom: 2rem;
-      color: hsl(var(--muted-foreground));
-    }
-    
-    .back-button {
-      margin-top: 1rem;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
     }
   </style>
 </head>
@@ -62,7 +31,7 @@
           <a href="index.html" class="nav-link">Home</a>
           <a href="index.html#wear-your-story" class="nav-link">About</a>
           <a href="index.html#work-section" class="nav-link">Work</a>
-          <a href="portfolio.html" class="nav-link">Designs</a>
+          <a href="#" class="nav-link">Designs</a>
           <a href="index.html#contact" class="nav-link">Contact</a>
         </div>
       </nav>
@@ -70,18 +39,35 @@
   </header>
 
   <main>
-    <section class="thankyou-container">
-      <div class="thankyou-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-        </svg>
+    <section class="portfolio-section">
+      <div class="container">
+        <h1 class="section-title">Design Portfolio</h1>
+        
+        <div class="portfolio-masonry">
+          <!-- Portfolio items will be dynamically loaded here -->
+        </div>
       </div>
-      <h1 class="thankyou-title">Thank You!</h1>
-      <p class="thankyou-message">Your message has been received. I'll get back to you as soon as possible.</p>
-      <a href="index.html" class="apple-button back-button">Back to Home</a>
     </section>
   </main>
+
+  <!-- Portfolio Modal -->
+  <div class="portfolio-modal" id="portfolioModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-image-container">
+        <img src="/placeholder.svg" alt="" id="modalImage">
+      </div>
+      <div class="modal-details">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="container">
@@ -96,7 +82,7 @@
             <a href="index.html">Home</a>
             <a href="index.html#wear-your-story">About</a>
             <a href="index.html#work-section">Work</a>
-            <a href="portfolio.html">Designs</a>
+            <a href="#">Designs</a>
             <a href="index.html#contact">Contact</a>
           </div>
           <div class="footer-column">
@@ -114,26 +100,26 @@
     </div>
   </footer>
 
+  <script src="./script.js"></script>
+  <script src="./portfolio.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById('current-year').textContent = new Date().getFullYear();
-      
-      // Add header animation
-      const header = document.querySelector("header");
-      if (header) {
-        window.addEventListener("scroll", () => {
-          const scrollY = window.scrollY;
-          const opacity = Math.min(0.3 + scrollY / 1000, 0.8);
-          header.style.background = `rgba(35, 35, 37, ${opacity})`;
-          
-          if (scrollY > 50) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
-        });
-      }
-    });
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Add header animation
+    const header = document.querySelector("header");
+    if (header) {
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+        const opacity = Math.min(0.3 + scrollY / 1000, 0.8);
+        header.style.background = `rgba(35, 35, 37, ${opacity})`;
+        
+        if (scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    }
   </script>
 </body>
 </html>
