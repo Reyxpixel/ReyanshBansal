@@ -1,0 +1,8 @@
+Add topbar animation to thank you page and add a "error 505" page with the song playing
+Add a 404 not found page with some sort of game or something
+add maybe the purple gradient image
+make the portfolio page with the images arranged in a self layout 
+change how the cards look in the carousel
+modify the journey section
+modify the marquee section by choosing different font and manipulating size
+add some interactive elements to the home page

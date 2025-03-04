@@ -88,7 +88,7 @@ a {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 0.1rem;
 }
 
 .sr-only {
@@ -110,53 +110,27 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(25, 25, 26, 0.7); /* Changed from #1e1e20 to #1e1e20 */
+  background: rgba(25, 25, 26, 0.7);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   height: 4rem;
   display: flex;
   align-items: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  margin: 20px 20px 0 20px;
+  border-radius: 12px;
+  transition: all 0.5s ease-in-out;
 }
 
-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.2) 20%,
-    rgba(255, 255, 255, 0.2) 80%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-header::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.1) 20%,
-    rgba(255, 255, 255, 0.1) 80%,
-    rgba(255, 255, 255, 0) 100%
-  );
+header.scrolled {
+  margin: 0;
+  border-radius: 0;
 }
 
 .dark header {
   background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 nav {
@@ -237,7 +211,7 @@ nav {
   display: inline-block;
   padding: 0.75rem 2rem;
   border-radius: 9999px;
-  background-color: #1e1e20; /* Changed from hsl(var(--primary)) to #1e1e20 */
+  background-color: #1e1e20;
   color: hsl(var(--primary-foreground));
   font-weight: 600;
   transition: all 0.3s ease-in-out;
@@ -247,7 +221,7 @@ nav {
 }
 
 .apple-button:hover {
-  background-color: rgba(25, 25, 26, 0.9); /* Changed to match new color */
+  background-color: rgba(25, 25, 26, 0.9);
   transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -420,12 +394,6 @@ nav {
   animation: orbit4 25s linear infinite;
 }
 
-.social-icon[data-icon="dribbble"] {
-  top: 10%;
-  left: -15px;
-  animation: orbit5 39s linear infinite;
-}
-
 @keyframes orbit1 {
   0% {
     transform: rotate(0deg) translateX(40px) rotate(0deg);
@@ -459,15 +427,6 @@ nav {
   }
   100% {
     transform: rotate(576deg) translateX(55px) rotate(-576deg);
-  }
-}
-
-@keyframes orbit5 {
-  0% {
-    transform: rotate(288deg) translateX(48px) rotate(-288deg);
-  }
-  100% {
-    transform: rotate(648deg) translateX(48px) rotate(-648deg);
   }
 }
 
@@ -524,43 +483,50 @@ nav {
   margin: 2rem auto 0;
   width: 100%;
   max-width: 1200px;
-  overflow: hidden;
-  padding: 0 50px;
+  padding: 0;
   display: flex;
-  justify-content: center; /* Center the carousel */
-}
-
-@media (max-width: 768px) {
-  .carousel-container {
-    padding: 0 30px;
-  }
+  align-items: center;
 }
 
 .carousel-wrapper {
   overflow: hidden;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  padding: 1rem;
 }
 
-.carousel {
+.carousel,
+.portfolio-grid {
   display: flex;
-  gap: 2rem;
   transition: transform 0.5s ease;
-  width: max-content;
+  width: 100%;
 }
 
-.carousel-item {
-  flex: 0 0 300px;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+.carousel-item,
+.portfolio-item {
+  flex: 0 0 100%;
+  padding: 0 15px;
+  transition: all 0.5s ease;
+}
+
+@media (min-width: 768px) {
+  .carousel-item,
+  .portfolio-item {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .carousel-item,
+  .portfolio-item {
+    flex: 0 0 33.333%;
+  }
 }
 
 .carousel-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
-  backdrop-filter: blur(5px);
+  background: #1e1e20;
   border: none;
   width: 40px;
   height: 40px;
@@ -572,6 +538,7 @@ nav {
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-button:hover {
@@ -580,12 +547,12 @@ nav {
 
 .prev-button,
 .prev-button-portfolio {
-  left: 0;
+  left: -20px;
 }
 
 .next-button,
 .next-button-portfolio {
-  right: 0;
+  right: -20px;
 }
 
 .feature-card {
@@ -610,19 +577,10 @@ nav {
 }
 
 /* Portfolio Grid section */
-.portfolio-grid {
-  display: flex;
-  gap: 2rem;
-  transition: transform 0.5s ease;
-  width: max-content;
-}
-
 .portfolio-item {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  flex: 0 0 300px;
-  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .portfolio-item img {
@@ -725,7 +683,7 @@ nav {
 /* Marquee section */
 .marquee-container {
   overflow: hidden;
-  background-color: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
+  background-color: #1e1e20;
   padding: 4rem 0;
 }
 
@@ -740,7 +698,7 @@ nav {
   padding: 0 1rem;
   font-size: 3.5rem; /* Increased font size to be almost as large as the strip */
   font-weight: 800;
-  color: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
+  color: #1e1e20;
   -webkit-text-stroke: 1px white; /* White stroke */
   display: inline-block; /* Ensure proper spacing */
 }
@@ -804,7 +762,7 @@ nav {
   padding: 0.75rem;
   border: 1px solid hsl(var(--input));
   border-radius: var(--radius);
-  background-color: rgba(25, 25, 26, 0.3); /* Changed from #1e1e20 to #1e1e20 */
+  background-color: rgba(25, 25, 26, 0.3);
   color: hsl(var(--foreground));
   font-family: inherit;
   font-size: 1rem;
@@ -820,7 +778,7 @@ nav {
 
 /* Footer styles */
 footer {
-  background-color: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
+  background-color: #1e1e20;
   color: hsl(var(--muted-foreground));
   padding: 4rem 0 2rem;
   border-top: 1px solid hsl(var(--border));
@@ -924,7 +882,7 @@ footer {
 }
 
 .dark footer {
-  background-color: #1e1e20; /* Changed from #1e1e20 to #1e1e20 */
+  background-color: #1e1e20;
   color: hsl(var(--muted-foreground));
 }
 
@@ -958,6 +916,21 @@ footer {
   /* Mobile menu button */
   .mobile-menu-button {
     display: block;
+  }
+
+  .carousel-button {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .prev-button,
+  .prev-button-portfolio {
+    left: -10px;
+  }
+
+  .next-button,
+  .next-button-portfolio {
+    right: -10px;
   }
 }
 
@@ -1093,5 +1066,21 @@ footer {
   border: 4px solid #0f0f10; /* Creates the gap */
   background-color: #1e1e20;
   background-clip: content-box;
+}
+
+/* Make the rotating text responsive */
+@media (max-width: 768px) {
+  .loader {
+    font-size: 2.5rem;
+    height: 3rem;
+  }
+
+  .words {
+    height: 40px;
+  }
+
+  .word {
+    font-size: 2.5rem;
+  }
 }
 

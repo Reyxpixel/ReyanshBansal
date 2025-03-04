@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - Reyansh Bansal</title>
+  <meta name="description" content="Thank you for contacting Reyansh Bansal">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .thankyou-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .thankyou-icon {
+      width: 80px;
+      height: 80px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    
+    .thankyou-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .thankyou-message {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+      color: hsl(var(--muted-foreground));
+    }
+    
+    .back-button {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo-container">
+          <a href="index.html" class="logo">
+            <img src="logo.png" alt="Logo" class="logo-image">
+            <span>Reyansh Bansal</span>
+          </a>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#wear-your-story" class="nav-link">About</a>
+          <a href="index.html#portfolio-grid" class="nav-link">Projects</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="thankyou-container">
+      <div class="thankyou-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h1 class="thankyou-title">Thank You!</h1>
+      <p class="thankyou-message">Your message has been received. I'll get back to you as soon as possible.</p>
+      <a href="index.html" class="apple-button back-button">Back to Home</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="logo.png" alt="Logo" class="logo-image">
+          <span>Reyansh Bansal</span>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Navigation</h3>
+            <a href="index.html">Home</a>
+            <a href="index.html#wear-your-story">About</a>
+            <a href="index.html#portfolio-grid">Projects</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h3>Social</h3>
+            <a href="https://www.instagram.com/reyansh.bansal/" target="_blank">Instagram</a>
+            <a href="https://x.com/Reyxpixel" target="_blank">Twitter</a>
+            <a href="https://www.linkedin.com/in/reyansh-bansal-0a3370288/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Reyxpixel" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year">2024</span> Reyansh Bansal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
