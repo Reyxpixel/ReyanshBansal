@@ -12,28 +12,30 @@ document.addEventListener("DOMContentLoaded", () => {
   if (socialIcons) {
     socialIcons.forEach((icon) => {
       icon.addEventListener("click", (e) => {
+        e.preventDefault() // Prevent default behavior
         const iconType = icon.getAttribute("data-icon")
         let url = "#"
 
         // Set appropriate URLs for each social icon
         switch (iconType) {
           case "github":
-            url = "https://github.com/"
+            url = "https://github.com/Reyxpixel"
             break
           case "linkedin":
             url = "https://linkedin.com/"
             break
           case "twitter":
-            url = "https://twitter.com/"
+            url = "https://twitter.com/Reyxpixel"
             break
           case "instagram":
-            url = "https://instagram.com/"
+            url = "https://instagram.com/reyansh.bansal"
             break
           case "dribbble":
             url = "https://dribbble.com/"
             break
         }
 
+        // Open in a new tab
         window.open(url, "_blank")
       })
     })
@@ -349,6 +351,11 @@ document.addEventListener("DOMContentLoaded", () => {
   sectionTitles.forEach((title) => {
     title.setAttribute("data-original-text", title.textContent)
     title.textContent = ""
+
+    // Create a span inside the title for the typing animation
+    const typingSpan = document.createElement("span")
+    typingSpan.classList.add("typing-animation")
+    title.appendChild(typingSpan)
   })
 
   // Create an intersection observer
@@ -357,21 +364,20 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const title = entry.target
+          const typingSpan = title.querySelector(".typing-animation")
           const titleText = title.getAttribute("data-original-text")
 
           // Only start animation if it hasn't been animated yet
-          if (title.textContent === "") {
-            title.classList.add("typing-animation")
-
+          if (!typingSpan.textContent) {
             let i = 0
             const typingInterval = setInterval(() => {
               if (i < titleText.length) {
-                title.textContent += titleText.charAt(i)
+                typingSpan.textContent = titleText.substring(0, i + 1)
                 i++
               } else {
                 clearInterval(typingInterval)
-                title.classList.remove("typing-animation")
-                title.classList.add("typing-animation-done")
+                typingSpan.classList.remove("typing-animation")
+                typingSpan.classList.add("typing-animation-done")
               }
             }, 100) // Adjust typing speed here
           }

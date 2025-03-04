@@ -521,12 +521,19 @@ nav {
 /* Feature Carousel section */
 .carousel-container {
   position: relative;
-  margin-top: 2rem;
+  margin: 2rem auto 0;
   width: 100%;
+  max-width: 1200px;
   overflow: hidden;
   padding: 0 50px;
   display: flex;
   justify-content: center; /* Center the carousel */
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    padding: 0 30px;
+  }
 }
 
 .carousel-wrapper {
@@ -1045,12 +1052,15 @@ footer {
 /* Terminal typing animation for section titles */
 .typing-animation {
   position: relative;
+  display: inline-block;
+  width: auto;
+  margin: 0 auto;
 }
 
 .typing-animation::after {
   content: "_";
   position: absolute;
-  right: -10px;
+  right: -8px;
   animation: blink 0.7s infinite;
 }
 
@@ -1084,3 +1094,4 @@ footer {
   background-color: #1e1e20;
   background-clip: content-box;
 }
+
