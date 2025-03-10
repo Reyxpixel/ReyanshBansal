@@ -1021,7 +1021,7 @@ footer {
 .words {
   position: relative;
   width: auto;
-  height: 50px;
+  height: 12px;
   transform-style: preserve-3d;
   animation: rotateCube 8.33s infinite ease-in-out; /* 25% slower animation */
   margin-left: 0rem;
