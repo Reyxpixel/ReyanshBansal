@@ -6,9 +6,7 @@
   <title>Thank You - Reyansh Bansal</title>
   <meta name="description" content="Thank you for contacting Reyansh Bansal">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style-updates.css">
-  <link rel="stylesheet" href="style-font.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     .thankyou-container {
       display: flex;
@@ -54,15 +52,14 @@
       <nav>
         <div class="logo-container">
           <a href="index.html" class="logo">
-            <img src="Images/logo.png" alt="Logo" class="logo-image">
+            <img src="logo.png" alt="Logo" class="logo-image">
             <span>Reyansh Bansal</span>
           </a>
         </div>
         <div class="nav-links">
           <a href="index.html" class="nav-link">Home</a>
           <a href="index.html#wear-your-story" class="nav-link">About</a>
-          <a href="index.html#work-section" class="nav-link">Work</a>
-          <a href="portfolio.html" class="nav-link">Designs</a>
+          <a href="index.html#portfolio-grid" class="nav-link">Projects</a>
           <a href="index.html#contact" class="nav-link">Contact</a>
         </div>
       </nav>
@@ -87,7 +84,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="Images/logo.png" alt="Logo" class="logo-image">
+          <img src="logo.png" alt="Logo" class="logo-image">
           <span>Reyansh Bansal</span>
         </div>
         <div class="footer-links">
@@ -95,8 +92,7 @@
             <h3>Navigation</h3>
             <a href="index.html">Home</a>
             <a href="index.html#wear-your-story">About</a>
-            <a href="index.html#work-section">Work</a>
-            <a href="portfolio.html">Designs</a>
+            <a href="index.html#portfolio-grid">Projects</a>
             <a href="index.html#contact">Contact</a>
           </div>
           <div class="footer-column">
@@ -115,25 +111,7 @@
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById('current-year').textContent = new Date().getFullYear();
-      
-      // Add header animation
-      const header = document.querySelector("header");
-      if (header) {
-        window.addEventListener("scroll", () => {
-          const scrollY = window.scrollY;
-          const opacity = Math.min(0.3 + scrollY / 1000, 0.8);
-          header.style.background = `rgba(35, 35, 37, ${opacity})`;
-          
-          if (scrollY > 50) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
-        });
-      }
-    });
+    document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

@@ -6,8 +6,9 @@
   <title>Reyansh Bansal - Portfolio</title>
   <meta name="description" content="Apple-inspired design portfolio">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style-font.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.vercel.com/geist/font.css">
 </head>
 <body class="min-h-screen">
   <header>
@@ -15,15 +16,17 @@
       <nav>
         <div class="logo-container">
             <a href="index.html" class="logo">
-                <img src="Images/logo.png" alt="Logo" class="logo-image">
+                <img src="logo.png" alt="Logo" class="logo-image">
                 <span>Reyansh Bansal</span>
               </a>
         </div>
+        <button class="mobile-menu-button" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
         <div class="nav-links">
           <a href="#" class="nav-link">Home</a>
           <a href="#wear-your-story" class="nav-link">About</a>
-          <a href="#work-section" class="nav-link">Work</a>
-          <a href="portfolio.html" class="nav-link">Designs</a>
+          <a href="#portfolio-grid" class="nav-link">Projects</a>
           <a href="#contact" class="nav-link">Contact</a>
         </div>
       </nav>
@@ -48,7 +51,7 @@
         </div>
         <div class="hero-image-container">
           <div class="hero-image-wrapper">
-            <!-- Hero image will be replaced by the icosphere -->
+            <img src="HomeImg.png" alt="Creative work showcase" class="hero-image">
             <div class="social-links">
               <a href="https://github.com/Reyxpixel" target="_blank" class="social-icon" data-icon="github">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
@@ -71,74 +74,130 @@
     <!-- Wear Your Story Section -->
     <section id="wear-your-story" class="section">
         <div class="container">
-          <h2 class="section-title">A little bit about me...</h2>
+          <h2 class="section-title">A little bit about me.</h2>
           <div class="story-content">
             <div class="story-text">
               <p>I am a B.Tech undergrad at IIIT Delhi, pursuing Computer Science engineering and design. I am based in Delhi NCR. I am a driven and confident individual with a passion for creative problem solving and leadership, I believe I excel at fostering collaboration and staying focused on achieving goals. Currently I'm working on building some of my skills, making some projects and taking on some freelancing and commission work to grow my skillset.</p>
             </div>
             <div class="story-image">
-              <img src="Images/Me.png" alt="Brand storytelling" class="hover-scale">
+              <img src="Me.png" alt="Brand storytelling" class="hover-scale">
             </div>
           </div>
         </div>
       </section>
   
-      <!-- Work Section (Replacing Feature Carousel) -->
-      <section id="work-section" class="section">
+      <!-- Feature Carousel Section -->
+      <section id="feature-carousel" class="section">
         <div class="container">
-          <h2 class="section-title">Work</h2>
-          
-          <!-- Creative Divider -->
-          <div class="work-divider">
-            <div class="divider-line"></div>
-            <div class="divider-text">Explore My Projects</div>
-            <div class="divider-line"></div>
-          </div>
-          
-          <!-- Two Column Layout -->
-          <div class="work-container">
-            <!-- Designs Column -->
-            <div class="work-column designs-column">
-              <h3>Designs</h3>
-              <div class="scattered-cards">
-                <div class="card-item">
-                  <img src="Images/Proj2.jpg" alt="Odyssey Posters">
-                </div>
-                <div class="card-item">
-                  <img src="Images/Proj3.png" alt="Design Journal">
-                </div>
-                <div class="card-item">
-                  <img src="https://placehold.co/400x300" alt="UI Design">
-                </div>
-                <div class="card-item">
-                  <img src="https://placehold.co/400x300" alt="Branding">
-                </div>
-              </div>
-              <div class="text-center">
-                <a href="portfolio.html" class="apple-button">See Designs</a>
-              </div>
-            </div>
-            
-            <!-- Programming Column -->
-            <div class="work-column programming-column">
-              <h3>Programming</h3>
-              <div class="command-prompt">
-                <div class="prompt-header">
-                  <div class="prompt-title">Command Prompt</div>
-                  <div class="prompt-controls">
-                    <div class="prompt-control control-minimize"></div>
-                    <div class="prompt-control control-maximize"></div>
-                    <div class="prompt-control control-close"></div>
+          <h2 class="section-title">Some of my current Skills</h2>
+          <div class="carousel-container">
+            <button class="carousel-button prev-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+            </button>
+            <div class="carousel-wrapper">
+              <div class="carousel">
+                <div class="carousel-item hover-scale">
+                  <div class="feature-card">
+                    <h3>Programming</h3>
+                    <p>Projects in Python and JavaScript. programming Data Structure and Algorithms in C/C++</p>
                   </div>
                 </div>
-                <div class="prompt-content">
-                  <!-- Content will be added by JavaScript -->
+                <div class="carousel-item hover-scale">
+                  <div class="feature-card">
+                    <h3>Web Development</h3>
+                    <p>Experienced with HTML, CSS and JavaScript. Worked with AI tools such as v0.dev and Deepseek.</p>
+                  </div>
+                </div>
+                <div class="carousel-item hover-scale">
+                  <div class="feature-card">
+                    <h3>UI/UX Design</h3>
+                    <p>Creating Intuitive interfaces in tools such as Figma, Miro, Jira with prototypical and responsive models.</p>
+                  </div>
+                </div>
+                <div class="carousel-item hover-scale">
+                  <div class="feature-card">
+                    <h3>Content Creation</h3>
+                    <p>Extremely Experienced with Adobe Photoshop, Adobe Illustrator, Video Editing and Graphic Design.</p>
+                  </div>
+                </div>
+                <div class="carousel-item hover-scale">
+                  <div class="feature-card">
+                    <h3>3D Modeling</h3>
+                    <p>Experience with Blender and Three.js for creating interactive 3D models and animations.</p>
+                  </div>
+                </div>
+                <div class="carousel-item hover-scale">
+                  <div class="feature-card">
+                    <h3>Mobile Development</h3>
+                    <p>Building cross-platform applications using React Native and Flutter frameworks.</p>
+                  </div>
                 </div>
               </div>
-              <div class="text-center">
-                <a href="programs.html" class="apple-button">See Projects</a>
+            </div>
+            <button class="carousel-button next-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Portfolio Grid Section -->
+      <section id="portfolio-grid" class="section">
+        <div class="container">
+          <h2 class="section-title">Work</h2>
+          <div class="carousel-container">
+            <button class="carousel-button prev-button-portfolio">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+            </button>
+            <div class="carousel-wrapper">
+              <div class="portfolio-grid">
+                <div class="portfolio-item hover-scale">
+                  <img src="Proj0.png" alt="Project 1">
+                  <div class="portfolio-overlay">
+                    <h3>Discord Bot</h3>
+                    <p>discord.js</p>
+                  </div>
+                </div>
+                <div class="portfolio-item hover-scale">
+                  <img src="Proj2.jpg" alt="Project 2">
+                  <div class="portfolio-overlay">
+                    <h3>Odyssey Posters</h3>
+                    <p>Photoshop</p>
+                  </div>
+                </div>
+                <div class="portfolio-item hover-scale">
+                  <img src="Proj3.png" alt="Project 3">
+                  <div class="portfolio-overlay">
+                    <h3>Design Journal</h3>
+                    <p>Illustrator</p>
+                  </div>
+                </div>
+                <div class="portfolio-item hover-scale">
+                  <img src="https://placehold.co/400x300" alt="Project 4">
+                  <div class="portfolio-overlay">
+                    <h3>Project Four</h3>
+                    <p>Mobile App</p>
+                  </div>
+                </div>
+                <div class="portfolio-item hover-scale">
+                  <img src="https://placehold.co/400x300" alt="Project 5">
+                  <div class="portfolio-overlay">
+                    <h3>Project Five</h3>
+                    <p>3D Modeling</p>
+                  </div>
+                </div>
+                <div class="portfolio-item hover-scale">
+                  <img src="https://placehold.co/400x300" alt="Project 6">
+                  <div class="portfolio-overlay">
+                    <h3>Project Six</h3>
+                    <p>Graphic Design</p>
+                  </div>
+                </div>
               </div>
             </div>
+            <button class="carousel-button next-button-portfolio">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+            </button>
           </div>
         </div>
       </section>
@@ -173,31 +232,32 @@
         </div>
       </section>
   
+      <!-- Marquee Section -->
       <section id="marquee" class="section">
         <div class="marquee-container">
           <div class="marquee-content">
-            <span data-text="Design">Design</span>
-            <span data-text="•">•</span>
-            <span data-text="Development">Development</span>
-            <span data-text="•">•</span>
-            <span data-text="Strategy">Strategy</span>
-            <span data-text="•">•</span>
-            <span data-text="Branding">Branding</span>
-            <span data-text="•">•</span>
-            <span data-text="UX">UX</span>
-            <span data-text="•">•</span>
-            <span data-text="Design">Design</span>
-            <span data-text="•">•</span>
-            <span data-text="Development">Development</span>
-            <span data-text="•">•</span>
-            <span data-text="Strategy">Strategy</span>
-            <span data-text="•">•</span>
-            <span data-text="Branding">Branding</span>
-            <span data-text="•">•</span>
-            <span data-text="UX">UX</span>
+            <span>Design</span>
+            <span>•</span>
+            <span>Development</span>
+            <span>•</span>
+            <span>Strategy</span>
+            <span>•</span>
+            <span>Branding</span>
+            <span>•</span>
+            <span>UX</span>
+            <span>•</span>
+            <span>Design</span>
+            <span>•</span>
+            <span>Development</span>
+            <span>•</span>
+            <span>Strategy</span>
+            <span>•</span>
+            <span>Branding</span>
+            <span>•</span>
+            <span>UX</span>
           </div>
         </div>
-      </section>      
+      </section>
   
       <!-- Contact Form Section -->
       <section id="contact" class="section">
@@ -207,7 +267,7 @@
             <div class="contact-info">
               <p class="contact-intro">Ready to start your project? Contact me today and let's create something amazing together. I will be sure to get back to you, as I am always looking for work opportunities. Also, feel free to contact me on my social media handles that are linked below. Thanks for visiting my portfolio!</p>
               <div class="contact-details">
-                <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#187a79766b79746a7d6179766b7060587f75797174367b7775"><span class="__cf_email__" data-cfemail="1270737c61737e60776b737c617a6a52757f737b7e3c717d7f">[email&#160;protected]</span></a></p>
+                <p><strong>Email:</strong> <a href="mailto:bansalreyanshx@gmail.com">bansalreyanshx@gmail.com</a></p>
                 <p><strong>Location:</strong> Delhi, India</p>
                 <p><strong>Instagram:</strong> <a href="https://www.instagram.com/reyansh.bansal/" target="_blank">@reyansh.bansal</a></p>
                 <p><strong>Twitter:</strong> <a href="https://x.com/Reyxpixel" target="_blank">@Reyxpixel</a></p>
@@ -233,7 +293,7 @@
               <button type="submit" class="apple-button">Send Message</button>
             </form>
             
-            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+            <script>
             document.getElementById("contactForm").addEventListener("submit", function(event) {
                 event.preventDefault(); // Prevent default form submission
             
@@ -266,7 +326,7 @@
       <div class="container">
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="Images/logo.png" alt="Logo" class="logo-image">
+                <img src="logo.png" alt="Logo" class="logo-image">
                 <span>Reyansh Bansal</span>
               </div>
           <div class="footer-links">
@@ -274,8 +334,7 @@
               <h3>Navigation</h3>
               <a href="#">Home</a>
               <a href="#wear-your-story">About</a>
-              <a href="#work-section">Work</a>
-              <a href="portfolio.html">Designs</a>
+              <a href="#portfolio-grid">Projects</a>
               <a href="#contact">Contact</a>
             </div>
             <div class="footer-column">
@@ -294,28 +353,6 @@
     </footer>
   
     <script src="./script.js"></script>
-    <script src="./three-sphere.js"></script>
-    <script src="./work-section.js"></script>
-    <script>
-      document.getElementById('current-year').textContent = new Date().getFullYear();
-      
-      // Add text-center class for button alignment
-      document.head.insertAdjacentHTML('beforeend', `
-        <style>
-          .text-center {
-            text-align: center;
-            margin-top: 1.5rem;
-          }
-          
-          .work-column h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-align: center;
-          }
-        </style>
-      `);
-    </script>
   </body>
   </html>
 
