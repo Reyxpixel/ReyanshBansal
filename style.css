@@ -2,25 +2,25 @@
 :root {
   --background: 0 0% 0%;
   --foreground: 210 40% 98%;
-  --card: 0 0% 5%;
+  --card: 0 0% 0%;
   --card-foreground: 210 40% 98%;
   --popover: 0 0% 0%;
   --popover-foreground: 210 40% 98%;
-  --primary: 0 0% 10%;
+  --primary: 0 0% 0%;
   --primary-foreground: 210 40% 98%;
-  --secondary: 0 0% 8%;
+  --secondary: 0 0% 0%;
   --secondary-foreground: 210 40% 98%;
-  --muted: 0 0% 8%;
+  --muted: 0 0% 0%;
   --muted-foreground: 215 20.2% 75.1%;
-  --accent: 0 0% 8%;
+  --accent: 0 0% 0%;
   --accent-foreground: 210 40% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
-  --border: 0 0% 10%;
-  --input: 0 0% 10%;
-  --ring: 0 0% 15%;
+  --border: 0 0% 0%;
+  --input: 0 0% 0%;
+  --ring: 0 0% 0%;
   --radius: 0.5rem;
-  --light-grey: #1a1a1a;
+  --light-grey: #000000;
   --section-gap: 5rem;
 }
 
@@ -31,25 +31,25 @@
 }
 
 .dark {
-  --background: 220 3% 6%;
+  --background: 0 0% 0%;
   --foreground: 210 40% 98%;
-  --card: 220 3% 10%;
+  --card: 0 0% 0%;
   --card-foreground: 210 40% 98%;
-  --popover: 220 3% 6%;
+  --popover: 0 0% 0%;
   --popover-foreground: 210 40% 98%;
-  --primary: 220 3% 20%;
+  --primary: 0 0% 0%;
   --primary-foreground: 210 40% 98%;
-  --secondary: 220 3% 15%;
+  --secondary: 0 0% 0%;
   --secondary-foreground: 210 40% 98%;
-  --muted: 220 3% 15%;
-  --muted-foreground: 215 20.2% 75.1%; /* Lighter grey color */
-  --accent: 220 3% 15%;
+  --muted: 0 0% 0%;
+  --muted-foreground: 215 20.2% 75.1%;
+  --accent: 0 0% 0%;
   --accent-foreground: 210 40% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
-  --border: 220 3% 18%;
-  --input: 220 3% 18%;
-  --ring: 220 3% 30%;
+  --border: 0 0% 0%;
+  --input: 0 0% 0%;
+  --ring: 0 0% 0%;
 }
 
 /* Reset and base styles */
@@ -65,7 +65,7 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   min-height: 100vh;
@@ -88,7 +88,7 @@ a {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 0.1rem;
+  padding: 0 1rem;
 }
 
 .sr-only {
@@ -110,27 +110,18 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(26, 26, 26, 0.7);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background-color: #000000;
   border: 1px solid #1a1a1a;
   height: 4rem;
   display: flex;
   align-items: center;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  margin: 20px 20px 0 20px;
-  border-radius: 12px;
-  transition: all 0.5s ease-in-out;
-}
-
-header.scrolled {
   margin: 0;
   border-radius: 0;
 }
 
 .dark header {
-  background: rgba(0, 0, 0, 0.2);
+  background-color: #000000;
 }
 
 nav {
@@ -161,7 +152,6 @@ nav {
 .nav-link {
   font-size: 0.875rem;
   font-weight: 500;
-  transition: color 0.2s ease;
   position: relative;
 }
 
@@ -173,7 +163,6 @@ nav {
   bottom: -4px;
   left: 0;
   background-color: hsl(var(--primary));
-  transition: width 0.3s ease;
 }
 
 .nav-link:hover:after {
@@ -526,8 +515,8 @@ nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #1e1e20;
-  border: none;
+  background: #000000;
+  border: 1px solid #1a1a1a;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -542,7 +531,7 @@ nav {
 }
 
 .carousel-button:hover {
-  background: rgba(25, 25, 26, 0.9);
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .prev-button,
@@ -556,7 +545,7 @@ nav {
 }
 
 .feature-card {
-  background-color: #1a1a1a;
+  background-color: #000000;
   color: hsl(var(--card-foreground));
   border-radius: var(--radius);
   padding: 2rem;
@@ -581,6 +570,7 @@ nav {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
+  border: 1px solid #1a1a1a;
 }
 
 .portfolio-item img {
@@ -660,9 +650,10 @@ nav {
 .timeline-content {
   width: calc(50% - 2rem);
   padding: 1.5rem;
-  background-color: hsl(var(--card));
+  background-color: #000000;
   border-radius: var(--radius);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #1a1a1a;
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
@@ -683,7 +674,7 @@ nav {
 /* Marquee section */
 .marquee-container {
   overflow: hidden;
-  background-color: #1e1e20;
+  background-color: #000000;
   padding: 4rem 0;
 }
 
@@ -696,11 +687,11 @@ nav {
 
 .marquee-content span {
   padding: 0 1rem;
-  font-size: 3.5rem; /* Increased font size to be almost as large as the strip */
+  font-size: 3.5rem;
   font-weight: 800;
-  color: #1e1e20;
-  -webkit-text-stroke: 1px white; /* White stroke */
-  display: inline-block; /* Ensure proper spacing */
+  color: #000000;
+  -webkit-text-stroke: 1px white;
+  display: inline-block;
 }
 
 @keyframes marquee {
@@ -760,9 +751,9 @@ nav {
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid hsl(var(--input));
+  border: 1px solid #1a1a1a;
   border-radius: var(--radius);
-  background-color: rgba(25, 25, 26, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   color: hsl(var(--foreground));
   font-family: inherit;
   font-size: 1rem;
@@ -778,7 +769,7 @@ nav {
 
 /* Footer styles */
 footer {
-  background-color: #1a1a1a;
+  background-color: #000000;
   color: hsl(var(--muted-foreground));
   padding: 4rem 0 2rem;
   border-top: 1px solid #1a1a1a;
@@ -889,7 +880,19 @@ footer {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .section-title {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .apple-button {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .hero-content h1 {
@@ -897,25 +900,44 @@ footer {
   }
 
   .timeline::before {
-    left: 2rem;
+    left: 1.5rem;
   }
 
   .timeline-marker {
-    left: 2rem;
+    left: 1.5rem;
   }
 
   .timeline-content {
-    width: calc(100% - 4rem);
-    margin-left: 4rem !important;
+    width: calc(100% - 3rem);
+    margin-left: 3rem !important;
+    padding: 1rem;
   }
 
   .nav-links {
     display: none;
+    position: fixed;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    background: #000000;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid #1a1a1a;
   }
 
-  /* Mobile menu button */
+  .nav-links.active {
+    display: flex;
+  }
+
   .mobile-menu-button {
     display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
 
   .carousel-button {
@@ -1053,7 +1075,7 @@ footer {
 
 *::-webkit-scrollbar {
   width: 15px;
-  background-color: #0f0f10;
+  background-color: #000000;
 }
 
 *::-webkit-scrollbar-track {
@@ -1063,8 +1085,8 @@ footer {
 
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  border: 4px solid #0f0f10;
-  background-color: #1a1a1a;
+  border: 4px solid #000000;
+  background-color: #000000;
   background-clip: content-box;
 }
 
@@ -1081,6 +1103,279 @@ footer {
 
   .word {
     font-size: 2.5rem;
+  }
+}
+
+/* Base responsive container */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+/* Header responsive styles */
+@media (max-width: 768px) {
+  header {
+    height: 3.5rem;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    background: #000000;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .mobile-menu-button {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+/* Hero section responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 4rem 0;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-content {
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-image-wrapper {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Story section responsive */
+@media (max-width: 768px) {
+  .story-content {
+    gap: 2rem;
+  }
+
+  .story-text p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .story-image {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* Feature carousel responsive */
+@media (max-width: 768px) {
+  .carousel-container {
+    margin: 1rem auto 0;
+  }
+
+  .carousel-wrapper {
+    padding: 0.5rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Portfolio grid responsive */
+@media (max-width: 768px) {
+  .portfolio-grid {
+    gap: 1rem;
+  }
+
+  .portfolio-item {
+    margin-bottom: 1rem;
+  }
+
+  .portfolio-item img {
+    height: 200px;
+  }
+
+  .portfolio-overlay {
+    padding: 1rem;
+  }
+}
+
+/* Timeline responsive */
+@media (max-width: 768px) {
+  .timeline {
+    padding: 1rem 0;
+  }
+
+  .timeline::before {
+    left: 1.5rem;
+  }
+
+  .timeline-marker {
+    left: 1.5rem;
+  }
+
+  .timeline-content {
+    width: calc(100% - 3rem);
+    margin-left: 3rem !important;
+    padding: 1rem;
+  }
+}
+
+/* Marquee section responsive */
+@media (max-width: 768px) {
+  .marquee-content span {
+    font-size: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  .marquee-container {
+    padding: 2rem 0;
+  }
+}
+
+/* Contact section responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    gap: 2rem;
+  }
+
+  .contact-info {
+    text-align: center;
+  }
+
+  .contact-info p {
+    font-size: 1rem;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Footer responsive */
+@media (max-width: 768px) {
+  footer {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-content {
+    gap: 2rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+}
+
+/* General responsive text adjustments */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .apple-button {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+/* Fix for iOS input zoom */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0;
+  }
+}
+
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
   }
 }
 

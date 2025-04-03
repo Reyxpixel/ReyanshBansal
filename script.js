@@ -11,20 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (header && mainContent) {
     // Add padding to main content to account for fixed header
     mainContent.style.paddingTop = header.offsetHeight + "px"
-    
-    // Handle scroll events for header transformation
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY
-      const opacity = Math.min(0.3 + scrollY / 1000, 0.8)
-      header.style.background = `rgba(25, 25, 26, ${opacity})`
-      
-      // Add or remove scrolled class based on scroll position
-      if (scrollY > 50) {
-        header.classList.add("scrolled")
-      } else {
-        header.classList.remove("scrolled")
-      }
-    })
   }
 
   // Smooth scrolling for anchor links
@@ -243,5 +229,27 @@ document.addEventListener("DOMContentLoaded", () => {
   sectionTitles.forEach((title) => {
     titleObserver.observe(title)
   })
+
+  // Mobile menu toggle
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  const navLinks = document.querySelector('.nav-links');
+
+  mobileMenuButton.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+      navLinks.classList.remove('active');
+    }
+  });
+
+  // Close mobile menu when clicking a link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  });
 })
 
