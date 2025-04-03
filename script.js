@@ -230,26 +230,112 @@ document.addEventListener("DOMContentLoaded", () => {
     titleObserver.observe(title)
   })
 
+  // Three.js Scene Setup
+  const canvas = document.getElementById('heroCanvas');
+  const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true
+  });
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+
+  // Mouse movement tracking
+  let mouseX = 0;
+  let mouseY = 0;
+  let lastMouseX = 0;
+  let lastMouseY = 0;
+  const randomRotationSpeed = 0.01;
+  let randomRotationX = (Math.random() - 0.5) * randomRotationSpeed;
+  let randomRotationY = (Math.random() - 0.5) * randomRotationSpeed;
+
+  // Ensure renderer size matches canvas container
+  function resizeRenderer() {
+      const container = canvas.parentElement;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      const needResize = canvas.width !== width || canvas.height !== height;
+      
+      if (needResize) {
+          renderer.setSize(width, height, false);
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+      }
+  }
+
+  // Create cube
+  const geometry = new THREE.BoxGeometry(2, 2, 2, 1, 1, 1);
+  
+  // Create multiple cubes with different scales and wireframe materials
+  const cubes = [];
+  const numLayers = 8;
+  
+  for (let i = 0; i < numLayers; i++) {
+    const scale = (0.85 + (i * 0.13));
+    const opacity = 1 - (i * 0.15);
+    
+    const material = new THREE.LineBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: Math.max(0.2, opacity)
+    });
+    
+    const edges = new THREE.EdgesGeometry(geometry);
+    const cube = new THREE.LineSegments(edges, material);
+    cube.scale.set(scale, scale, scale);
+    scene.add(cube);
+    cubes.push(cube);
+  }
+
+  // Set background to transparent
+  scene.background = null;
+
+  // Position camera
+  camera.position.z = 6;
+
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    // Rotate all cubes with random rotation
+    cubes.forEach((cube) => {
+        cube.rotation.x += randomRotationX;
+        cube.rotation.y += randomRotationY;
+    });
+    
+    // Handle resize
+    resizeRenderer();
+    
+    // Render scene
+    renderer.render(scene, camera);
+  }
+
+  // Start animation
+  animate();
+
   // Mobile menu toggle
   const mobileMenuButton = document.querySelector('.mobile-menu-button');
   const navLinks = document.querySelector('.nav-links');
 
-  mobileMenuButton.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
+  if (mobileMenuButton && navLinks) {
+      mobileMenuButton.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+      });
 
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!navLinks.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-      navLinks.classList.remove('active');
-    }
-  });
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+          if (!navLinks.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+              navLinks.classList.remove('active');
+          }
+      });
 
-  // Close mobile menu when clicking a link
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-    });
-  });
+      // Close mobile menu when clicking a link
+      navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+              navLinks.classList.remove('active');
+          });
+      });
+  }
 })
 

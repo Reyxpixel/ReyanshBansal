@@ -62,6 +62,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -71,6 +73,8 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   font-feature-settings: "rlig" 1, "calt" 1;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 img {
@@ -89,6 +93,7 @@ a {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .sr-only {
@@ -105,12 +110,14 @@ a {
 
 /* Header styles */
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid #1a1a1a;
   height: 4rem;
   display: flex;
@@ -118,6 +125,10 @@ header {
   overflow: hidden;
   margin: 0;
   border-radius: 0;
+}
+
+main {
+  padding-top: 4rem;
 }
 
 .dark header {
@@ -257,7 +268,7 @@ nav {
 
 @media (min-width: 768px) {
   .hero-section {
-    padding: 1rem 0; /* Reduced padding to decrease gap */
+    padding: 3rem 0; /* Reduced padding to decrease gap */
   }
 }
 
@@ -269,18 +280,86 @@ nav {
   align-items: flex-start;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 2rem;
+  padding: 2rem;
   transform: translateX(12%);
   position: relative;
+  background-color: #000000;
+  border: 1px solid #1a1a1a;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  width: 600px; /* Base width */
+  height: 400px; /* Height for 6:4 ratio */
+  box-sizing: border-box;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 768px) {
   .hero-content {
-    margin-bottom: 0;
-    margin-left: 0;
-    padding: 0;
-    transform: translateX(12%);
+    width: 90vw; /* Responsive width for mobile */
+    height: 60vw; /* Maintain 6:4 ratio on mobile */
+    transform: translateX(0);
+    padding: 1.5rem;
   }
+}
+
+/* Plus sign base styles */
+.plus-top-left,
+.plus-top-right,
+.plus-bottom-left,
+.plus-bottom-right {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+
+/* Horizontal lines */
+.plus-top-left::before,
+.plus-top-right::before,
+.plus-bottom-left::before,
+.plus-bottom-right::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #1a1a1a;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* Vertical lines */
+.plus-top-left::after,
+.plus-top-right::after,
+.plus-bottom-left::after,
+.plus-bottom-right::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background-color: #1a1a1a;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+/* Position the plus signs */
+.plus-top-left {
+  top: -10px;
+  left: -10px;
+}
+
+.plus-top-right {
+  top: -10px;
+  right: -10px;
+}
+
+.plus-bottom-left {
+  bottom: -10px;
+  left: -10px;
+}
+
+.plus-bottom-right {
+  bottom: -10px;
+  right: -10px;
 }
 
 .hero-content h1 {
@@ -321,10 +400,17 @@ nav {
 .hero-image-wrapper {
   position: relative;
   overflow: visible;
-  /* 20% smaller */
   width: 80%;
   margin: 0 auto;
   transition: transform 0.3s ease;
+  aspect-ratio: 1;
+}
+
+#heroCanvas {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  background-color: transparent;
 }
 
 .hero-image {
@@ -339,13 +425,15 @@ nav {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 2; /* Changed from 1 to 2 so bubbles appear on top of image */
-  transform-style: preserve-3d;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .social-icon {
+  pointer-events: auto;
   position: absolute;
   width: 50px;
   height: 50px;
@@ -359,7 +447,10 @@ nav {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   z-index: 3;
-  cursor: pointer; /* Added cursor pointer for clickable bubbles */
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
 }
 
 .social-icon:hover {
@@ -368,62 +459,105 @@ nav {
 }
 
 .social-icon[data-icon="github"] {
-  top: -20px;
-  left: 20%;
-  animation: orbit1 28s linear infinite;
+  animation: quadrant1 15s ease-in-out infinite;
 }
 
 .social-icon[data-icon="linkedin"] {
-  top: 30%;
-  right: -20px;
-  animation: orbit2 35s linear infinite;
+  animation: quadrant2 18s ease-in-out infinite;
+  animation-delay: -3s;
 }
 
 .social-icon[data-icon="twitter"] {
-  bottom: -15px;
-  left: 30%;
-  animation: orbit3 31s linear infinite;
+  animation: quadrant3 17s ease-in-out infinite;
+  animation-delay: -6s;
 }
 
 .social-icon[data-icon="instagram"] {
-  bottom: 20%;
-  right: -10px;
-  animation: orbit4 25s linear infinite;
+  animation: quadrant4 16s ease-in-out infinite;
+  animation-delay: -9s;
 }
 
-@keyframes orbit1 {
+@keyframes quadrant1 {
   0% {
-    transform: rotate(0deg) translateX(40px) rotate(0deg);
+    transform: rotate(15deg) translate(207px) rotate(-15deg);
+  }
+  20% {
+    transform: rotate(35deg) translate(230px) rotate(-35deg);
+  }
+  40% {
+    transform: rotate(55deg) translate(195px) rotate(-55deg);
+  }
+  60% {
+    transform: rotate(35deg) translate(218px) rotate(-35deg);
+  }
+  80% {
+    transform: rotate(15deg) translate(241px) rotate(-15deg);
   }
   100% {
-    transform: rotate(360deg) translateX(40px) rotate(-360deg);
-  }
-}
-
-@keyframes orbit2 {
-  0% {
-    transform: rotate(72deg) translateX(50px) rotate(-72deg);
-  }
-  100% {
-    transform: rotate(432deg) translateX(50px) rotate(-432deg);
-  }
-}
-
-@keyframes orbit3 {
-  0% {
-    transform: rotate(144deg) translateX(45px) rotate(-144deg);
-  }
-  100% {
-    transform: rotate(504deg) translateX(45px) rotate(-504deg);
+    transform: rotate(15deg) translate(207px) rotate(-15deg);
   }
 }
 
-@keyframes orbit4 {
+@keyframes quadrant2 {
   0% {
-    transform: rotate(216deg) translateX(55px) rotate(-216deg);
+    transform: rotate(105deg) translate(207px) rotate(-105deg);
+  }
+  20% {
+    transform: rotate(125deg) translate(230px) rotate(-125deg);
+  }
+  40% {
+    transform: rotate(145deg) translate(195px) rotate(-145deg);
+  }
+  60% {
+    transform: rotate(125deg) translate(218px) rotate(-125deg);
+  }
+  80% {
+    transform: rotate(105deg) translate(241px) rotate(-105deg);
   }
   100% {
-    transform: rotate(576deg) translateX(55px) rotate(-576deg);
+    transform: rotate(105deg) translate(207px) rotate(-105deg);
+  }
+}
+
+@keyframes quadrant3 {
+  0% {
+    transform: rotate(195deg) translate(207px) rotate(-195deg);
+  }
+  20% {
+    transform: rotate(215deg) translate(230px) rotate(-215deg);
+  }
+  40% {
+    transform: rotate(235deg) translate(195px) rotate(-235deg);
+  }
+  60% {
+    transform: rotate(215deg) translate(218px) rotate(-215deg);
+  }
+  80% {
+    transform: rotate(195deg) translate(241px) rotate(-195deg);
+  }
+  100% {
+    transform: rotate(195deg) translate(207px) rotate(-195deg);
+  }
+}
+
+@keyframes quadrant4 {
+  0% {
+    transform: rotate(285deg) translate(207px) rotate(-285deg);
+  }
+  20% {
+    transform: rotate(305deg) translate(230px) rotate(-305deg);
+  }
+  40% {
+    transform: rotate(325deg) translate(195px) rotate(-325deg);
+  }
+  60% {
+    transform: rotate(305deg) translate(218px) rotate(-305deg);
+  }
+  80% {
+    transform: rotate(285deg) translate(241px) rotate(-285deg);
+  }
+  100% {
+    transform: rotate(285deg) translate(207px) rotate(-285deg);
   }
 }
 
@@ -480,9 +614,10 @@ nav {
   margin: 2rem auto 0;
   width: 100%;
   max-width: 1200px;
-  padding: 0;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .carousel-wrapper {
@@ -544,12 +679,12 @@ nav {
 
 .prev-button,
 .prev-button-portfolio {
-  left: -20px;
+  left: 0;
 }
 
 .next-button,
 .next-button-portfolio {
-  right: -20px;
+  right: 0;
 }
 
 .feature-card {
@@ -1088,37 +1223,30 @@ footer {
   }
 }
 
+/* Scrollbar styles */
 *::-webkit-scrollbar {
-  width: 15px;
-  background-color: #000000;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent !important;
-  display: none;
+  background: #1a1a1a;
 }
 
 *::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  border: 4px solid #000000;
-  background-color: #000000;
-  background-clip: content-box;
+  background-color: #9f9f9f;
+  border-radius: 4px;
 }
 
-/* Make the rotating text responsive */
-@media (max-width: 768px) {
-  .loader {
-    font-size: 2.5rem;
-    height: 3rem;
-  }
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #d1d1d1;
+}
 
-  .words {
-    height: 40px;
-  }
-
-  .word {
-    font-size: 2.5rem;
-  }
+/* For Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #9f9f9f #1a1a1a;
 }
 
 /* Base responsive container */
@@ -1391,6 +1519,15 @@ footer {
 @media (max-width: 768px) {
   .mobile-menu-button {
     display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    margin-bottom: 0;
+    margin-left: 0;
+    padding: 2.5rem;
+    transform: translateX(12%);
   }
 }
 
