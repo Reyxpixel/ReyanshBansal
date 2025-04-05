@@ -232,12 +232,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Three.js Scene Setup
   const canvas = document.getElementById('heroCanvas');
+  canvas.style.zIndex = '2'; // Higher z-index, nothing else changed
+  
   const renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true,
       alpha: true
   });
-
+  
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 
@@ -356,11 +358,18 @@ document.addEventListener("DOMContentLoaded", () => {
     gridCanvas.style.width = '100%';
     gridCanvas.style.height = '100%';
     gridCanvas.style.pointerEvents = 'none'; // Allow interactions to pass through
-    gridCanvas.style.zIndex = '5'; // Above content but below other UI elements
+    gridCanvas.style.zIndex = '1'; // Lower z-index, nothing else changed
     
     // Add the new canvas to hero content
     heroContent.style.position = 'relative'; // Ensure position context
-    heroContent.appendChild(gridCanvas);
+    
+    // Important: Add the grid canvas BEFORE adding any other elements
+    // This ensures it's at the bottom of the stack
+    if (heroContent.firstChild) {
+      heroContent.insertBefore(gridCanvas, heroContent.firstChild);
+    } else {
+      heroContent.appendChild(gridCanvas);
+    }
     
     // Check if THREE is available
     if (typeof THREE === 'undefined') {
@@ -375,6 +384,10 @@ document.addEventListener("DOMContentLoaded", () => {
       alpha: true // Transparent background
     });
     
+    // Enable shadow mapping
+    gridRenderer.shadowMap.enabled = true;
+    gridRenderer.shadowMap.type = THREE.PCFSoftShadowMap; // Softer shadows
+    
     const gridScene = new THREE.Scene();
     const gridCamera = new THREE.PerspectiveCamera(70, 1, 0.1, 1000);
     
@@ -383,6 +396,27 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Position camera
     gridCamera.position.z = 5;
+    
+    // Add a directional light for shadows
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 10, 7);
+    directionalLight.castShadow = true;
+    
+    // Configure shadow properties
+    directionalLight.shadow.mapSize.width = 1024;
+    directionalLight.shadow.mapSize.height = 1024;
+    directionalLight.shadow.camera.near = 0.5;
+    directionalLight.shadow.camera.far = 50;
+    directionalLight.shadow.camera.left = -10;
+    directionalLight.shadow.camera.right = 10;
+    directionalLight.shadow.camera.top = 10;
+    directionalLight.shadow.camera.bottom = -10;
+    
+    gridScene.add(directionalLight);
+    
+    // Add ambient light so shadows aren't too dark
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+    gridScene.add(ambientLight);
     
     // Ensure renderer size matches canvas container
     function resizeGridRenderer() {
@@ -454,15 +488,20 @@ document.addEventListener("DOMContentLoaded", () => {
         // MUCH larger cubes for maximum visibility
         const geometry = new THREE.BoxGeometry(3.5, 3.5, 3.5);
         
-        // Solid dark grey material
-        const material = new THREE.MeshBasicMaterial({
-          color: 0x333333, // Dark grey
+        // Solid dark grey material - completely opaque (no transparency)
+        const material = new THREE.MeshStandardMaterial({
+          color: 0x111111, // Much darker, almost black
           wireframe: false,
-          transparent: true,
-          opacity: 0.9
+          transparent: false, // No transparency
+          roughness: 0.8,
+          metalness: 0.1
         });
         
         const cube = new THREE.Mesh(geometry, material);
+        
+        // Enable shadows
+        cube.castShadow = true;
+        cube.receiveShadow = true;
         
         // Create extreme spacing between cubes by multiplying the normalized positions
         // by much larger values
