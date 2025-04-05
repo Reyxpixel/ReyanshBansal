@@ -337,5 +337,333 @@ document.addEventListener("DOMContentLoaded", () => {
           });
       });
   }
+
+  // Interactive Grid with Three.js Cubes
+  function initInteractiveGrid() {
+    // Get references to hero content
+    const heroContent = document.querySelector('.hero-content');
+    if (!heroContent) {
+      console.error('Hero content not found');
+      return;
+    }
+    
+    // Create a new canvas specifically for the grid effect
+    const gridCanvas = document.createElement('canvas');
+    gridCanvas.id = 'gridCanvas';
+    gridCanvas.style.position = 'absolute';
+    gridCanvas.style.top = '0';
+    gridCanvas.style.left = '0';
+    gridCanvas.style.width = '100%';
+    gridCanvas.style.height = '100%';
+    gridCanvas.style.pointerEvents = 'none'; // Allow interactions to pass through
+    gridCanvas.style.zIndex = '5'; // Above content but below other UI elements
+    
+    // Add the new canvas to hero content
+    heroContent.style.position = 'relative'; // Ensure position context
+    heroContent.appendChild(gridCanvas);
+    
+    // Check if THREE is available
+    if (typeof THREE === 'undefined') {
+      console.error('THREE.js is not loaded or available');
+      return;
+    }
+    
+    // Create a new renderer, scene and camera specifically for the grid
+    const gridRenderer = new THREE.WebGLRenderer({
+      canvas: gridCanvas,
+      antialias: true,
+      alpha: true // Transparent background
+    });
+    
+    const gridScene = new THREE.Scene();
+    const gridCamera = new THREE.PerspectiveCamera(70, 1, 0.1, 1000);
+    
+    // Set background to transparent
+    gridScene.background = null;
+    
+    // Position camera
+    gridCamera.position.z = 5;
+    
+    // Ensure renderer size matches canvas container
+    function resizeGridRenderer() {
+      const width = heroContent.clientWidth;
+      const height = heroContent.clientHeight;
+      
+      gridRenderer.setSize(width, height, false);
+      gridCamera.aspect = width / height;
+      gridCamera.updateProjectionMatrix();
+    }
+    
+    // Initial sizing
+    resizeGridRenderer();
+    
+    // Store grid areas for mouse detection
+    const gridAreas = [];
+    
+    // Grid dimensions
+    const columns = 6; // Back to original 6 columns
+    const rows = 3;    // Back to original 3 rows
+    
+    // Create grid cells
+    function setupGridAreas() {
+      // Clear existing grid areas
+      gridAreas.length = 0;
+      
+      // Get hero content dimensions and position
+      const heroRect = heroContent.getBoundingClientRect();
+      
+      // Calculate cell dimensions
+      const cellWidth = heroRect.width / columns;
+      const cellHeight = heroRect.height / rows;
+      
+      // Create grid areas for mouse detection
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < columns; col++) {
+          // Calculate grid cell position
+          const x = (col * cellWidth) + (cellWidth / 2);
+          const y = (row * cellHeight) + (cellHeight / 2);
+          
+          gridAreas.push({
+            row,
+            col,
+            left: (col * cellWidth),
+            top: (row * cellHeight),
+            right: ((col + 1) * cellWidth),
+            bottom: ((row + 1) * cellHeight),
+            centerX: x,
+            centerY: y,
+            width: cellWidth,
+            height: cellHeight,
+            hasCube: false,
+            cube: null,
+            isAnimating: false
+          });
+        }
+      }
+    }
+    
+    // Setup initial grid
+    setupGridAreas();
+    
+    // Create a simple cube for grid cell
+    function createGridCube(gridArea) {
+      try {
+        // Prevent creating a cube if one is already being animated
+        if (gridArea.isAnimating) return null;
+        
+        // MUCH larger cubes for maximum visibility
+        const geometry = new THREE.BoxGeometry(3.5, 3.5, 3.5);
+        
+        // Solid dark grey material
+        const material = new THREE.MeshBasicMaterial({
+          color: 0x333333, // Dark grey
+          wireframe: false,
+          transparent: true,
+          opacity: 0.9
+        });
+        
+        const cube = new THREE.Mesh(geometry, material);
+        
+        // Create extreme spacing between cubes by multiplying the normalized positions
+        // by much larger values
+        
+        // Map grid position (0 to 1) to camera view (-1 to 1)
+        const relX = (gridArea.col + 0.5) / columns; // 0 to 1
+        const relY = 1 - ((gridArea.row + 0.5) / rows); // 1 to 0 (inverted)
+        
+        // Map to camera space with MUCH wider spacing
+        const mappedX = (relX * 2 - 1) * 10.0; // -8 to 8 (extremely wide spread)
+        const mappedY = (relY * 2 - 1) * 5.0; // -5 to 5 (much taller spread)
+        
+        // Set initial position at fixed distance from camera
+        const z = -8; // Start even further back to accommodate larger spacing
+        
+        cube.position.set(mappedX, mappedY, z);
+        
+        // Add to our grid scene
+        gridScene.add(cube);
+        
+        // Store reference
+        gridArea.hasCube = true;
+        gridArea.cube = cube;
+        gridArea.isAnimating = true;
+        
+        // Simple pop-up animation with longer travel for larger cubes
+        const targetZ = z + 4.0; // Move forward more dramatically
+        const duration = 200; // Faster animation
+        const startTime = Date.now();
+        
+        function animateCube() {
+          const elapsed = Date.now() - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+          
+          cube.position.z = z + ((targetZ - z) * eased);
+          
+          if (progress < 1) {
+            requestAnimationFrame(animateCube);
+          } else {
+            gridArea.isAnimating = false;
+          }
+        }
+        
+        animateCube();
+        
+        return cube;
+      } catch (error) {
+        console.error('Error creating grid cube:', error);
+        gridArea.isAnimating = false;
+        return null;
+      }
+    }
+    
+    // Remove a cube when mouse leaves
+    function removeGridCube(gridArea) {
+      if (!gridArea.hasCube || !gridArea.cube) return;
+      if (gridArea.isAnimating) return;
+      
+      const cube = gridArea.cube;
+      gridArea.isAnimating = true;
+      
+      const duration = 200; // Faster animation
+      const startTime = Date.now();
+      const startZ = cube.position.z;
+      const targetZ = startZ - 4.0; // Move backward more dramatically to match the forward distance
+      
+      function animateCubeRemoval() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = progress; // Linear ease
+        
+        cube.position.z = startZ + ((targetZ - startZ) * eased);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateCubeRemoval);
+        } else {
+          // Ensure cube is properly removed
+          if (gridScene.children.includes(cube)) {
+            gridScene.remove(cube);
+          }
+          gridArea.hasCube = false;
+          gridArea.cube = null;
+          gridArea.isAnimating = false;
+        }
+      }
+      
+      animateCubeRemoval();
+    }
+    
+    // Track the current hover state for each cell
+    const hoverState = {};
+    
+    // Mouse move handler with improved tracking
+    function handleMouseMove(e) {
+      // Get the mouse position relative to the hero content
+      const heroRect = heroContent.getBoundingClientRect();
+      const mouseX = e.clientX - heroRect.left;
+      const mouseY = e.clientY - heroRect.top;
+      
+      // Reset all hover states first
+      for (let i = 0; i < gridAreas.length; i++) {
+        const key = `${gridAreas[i].row}-${gridAreas[i].col}`;
+        hoverState[key] = false;
+      }
+      
+      // Check which grid area the mouse is in
+      for (let i = 0; i < gridAreas.length; i++) {
+        const gridArea = gridAreas[i];
+        const isInside = mouseX >= gridArea.left && mouseX <= gridArea.right &&
+                         mouseY >= gridArea.top && mouseY <= gridArea.bottom;
+        
+        const key = `${gridArea.row}-${gridArea.col}`;
+        hoverState[key] = isInside;
+        
+        if (isInside && !gridArea.hasCube && !gridArea.isAnimating) {
+          createGridCube(gridArea);
+        }
+      }
+      
+      // Clean up cubes that are no longer hovered
+      for (let i = 0; i < gridAreas.length; i++) {
+        const gridArea = gridAreas[i];
+        const key = `${gridArea.row}-${gridArea.col}`;
+        
+        if (!hoverState[key] && gridArea.hasCube && !gridArea.isAnimating) {
+          removeGridCube(gridArea);
+        }
+      }
+    }
+    
+    // Add mouse move event listener
+    document.addEventListener('mousemove', handleMouseMove);
+    
+    // Cleanup all cubes when mouse leaves the hero area
+    function handleMouseLeave() {
+      for (let i = 0; i < gridAreas.length; i++) {
+        const gridArea = gridAreas[i];
+        if (gridArea.hasCube && !gridArea.isAnimating) {
+          removeGridCube(gridArea);
+        }
+      }
+    }
+    
+    // Add mouse leave event listener to hero content
+    heroContent.addEventListener('mouseleave', handleMouseLeave);
+    
+    // Handle window resize
+    function handleResize() {
+      // Resize renderer
+      resizeGridRenderer();
+      
+      // Clean up existing cubes
+      gridAreas.forEach(gridArea => {
+        if (gridArea.hasCube && gridArea.cube) {
+          if (gridScene.children.includes(gridArea.cube)) {
+            gridScene.remove(gridArea.cube);
+          }
+          gridArea.hasCube = false;
+          gridArea.cube = null;
+          gridArea.isAnimating = false;
+        }
+      });
+      
+      // Recalculate grid positions
+      setupGridAreas();
+    }
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Animation loop for the grid
+    function animateGrid() {
+      requestAnimationFrame(animateGrid);
+      gridRenderer.render(gridScene, gridCamera);
+    }
+    
+    // Start the grid animation loop
+    animateGrid();
+    
+    // Force cleanup function to remove stuck cubes
+    function forceCleanup() {
+      // Safety cleanup every 5 seconds to remove any stuck cubes
+      gridAreas.forEach(gridArea => {
+        const key = `${gridArea.row}-${gridArea.col}`;
+        if (!hoverState[key] && gridArea.hasCube) {
+          // Force remove the cube
+          if (gridArea.cube && gridScene.children.includes(gridArea.cube)) {
+            gridScene.remove(gridArea.cube);
+          }
+          gridArea.hasCube = false;
+          gridArea.cube = null;
+          gridArea.isAnimating = false;
+        }
+      });
+    }
+    
+    // Run cleanup periodically
+    setInterval(forceCleanup, 5000);
+  }
+
+  // Initialize the interactive grid immediately
+  initInteractiveGrid();
 })
 
