@@ -8,6 +8,113 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector("header")
   const mainContent = document.querySelector("main")
 
+  // Apply styling to the topbar navigation buttons
+  const headerNavLinks = document.querySelectorAll("header nav a");
+  headerNavLinks.forEach(link => {
+    // Check if this is the "Reyansh Bansal" link (usually the first link or brand link)
+    const isNameLink = link.textContent.includes("Reyansh") || 
+                       link.textContent.includes("Bansal") ||
+                       link.classList.contains("brand") ||
+                       link.classList.contains("logo");
+    
+    // Rename "Projects" to "Work" and add arrow
+    if (link.textContent.trim().toLowerCase() === 'projects') {
+      // Use the exact SVG path from the reference site
+      link.innerHTML = 'Work <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0607 6.74999L11.5303 7.28032L8.7071 10.1035C8.31657 10.4941 7.68341 10.4941 7.29288 10.1035L4.46966 7.28032L3.93933 6.74999L4.99999 5.68933L5.53032 6.21966L7.99999 8.68933L10.4697 6.21966L11 5.68933L12.0607 6.74999Z" fill="currentColor"></path></svg>';
+    }
+    
+    // Add appropriate classes instead of inline styles
+    if (!isNameLink) {
+      link.classList.add('nav-link');
+      
+      // Add special class for Contact button
+      if (link.textContent.trim().toLowerCase() === 'contact') {
+        link.classList.add('contact-button');
+      }
+      
+      // Add work button class if it contains the arrow span
+      if (link.querySelector('.arrow')) {
+        link.classList.add('work-button');
+      }
+    }
+  });
+
+  // Create and inject CSS styles for navigation
+  function injectNavStyles() {
+    const styleEl = document.createElement('style');
+    styleEl.textContent = `
+      /* Navigation link styles */
+      .nav-link {
+        color: #7e7e7e;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 8px 12px; /* Reduced horizontal padding */
+        margin: 0 -2px; /* Negative margin to pull buttons closer */
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: normal;
+        text-align: center;
+        height: 36px;
+      }
+
+      /* Navigation container spacing */
+      header nav {
+        display: flex;
+        align-items: center;
+        gap: 5px; /* Small gap between nav items */
+      }
+
+      .nav-link:hover {
+        color: #ffffff;
+        transform: translateZ(10px);
+        /* Removed text-shadow glow effect */
+        background-color: rgba(70, 70, 70, 0.6);
+        z-index: 1; /* Ensure hovered item appears above others */
+      }
+      
+      /* Work button with arrow */
+      .arrow {
+        display: inline-block;
+        margin-left: 2px; /* Reduced margin */
+        transition: transform 0.3s ease;
+        position: relative;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+      }
+      
+      .work-button:hover .arrow {
+        transform: rotate(180deg);
+      }
+
+      /* Contact button special styling - matching image exactly */
+      .contact-button {
+        color: #ffffff;
+        background-color: #0a0a0a;
+        border: 1px solid #242424;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: normal;
+        height: auto;
+        display: inline-block;
+        line-height: 1.2;
+      }
+
+      .contact-button:hover {
+        background-color: #1a1a1a;
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateZ(5px);
+      }
+    `;
+    document.head.appendChild(styleEl);
+  }
+
+  // Inject the CSS styles
+  injectNavStyles();
+
   if (header && mainContent) {
     // Add padding to main content to account for fixed header
     mainContent.style.paddingTop = header.offsetHeight + "px"
